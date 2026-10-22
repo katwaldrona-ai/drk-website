@@ -356,6 +356,68 @@
 
         .product-image i { opacity: 0.85; }
 
+        .product-image { cursor: pointer; }
+        .product-image:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+
+        /* Product details popup */
+        .product-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            background: rgba(15, 23, 42, 0.78);
+        }
+        .product-modal.open { display: flex; }
+        .product-modal-card {
+            position: relative;
+            width: min(680px, 100%);
+            max-height: 90vh;
+            overflow-y: auto;
+            background: #fff;
+            border-radius: 14px;
+            padding: 1.5rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,.3);
+        }
+        .product-modal-close {
+            position: absolute;
+            top: .65rem;
+            right: .8rem;
+            width: 40px;
+            height: 40px;
+            border: 0;
+            border-radius: 50%;
+            background: #e2e8f0;
+            color: #0f172a;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1;
+        }
+        .product-modal-image {
+            display: grid;
+            place-items: center;
+            height: min(42vh, 340px);
+            margin: .5rem 0 1rem;
+            background: #f8fafc;
+            border-radius: 10px;
+            color: var(--primary);
+            font-size: 4rem;
+        }
+        .product-modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+        .product-modal-card h3 { font-size: 1.5rem; margin: .5rem 0; }
+        .product-modal-card p { color: var(--text-muted); margin: .5rem 0 1rem; }
+        .product-modal-card .btn { justify-content: center; }
+        @media (max-width: 600px) {
+            .product-modal-card { padding: 1rem; }
+        }
+
         .product-image img.product-photo {
             width: 100%;
             height: 100%;
@@ -963,23 +1025,23 @@
               desc: 'Large-capacity setter and hatcher units built to your hatchery requirements.' },
             { id: 'controller', name: 'Digital Temperature & Humidity Controller', category: 'Spare Parts', icon: 'fa-temperature-half', badge: 'Spare Part', price: null,
               desc: 'Replacement controller for incubators with sensor input, alarms, and precise setpoint control.' },
-            { id: 'controller-xh3001', name: 'XH-W3001 Temperature Controller', category: 'Spare Parts', icon: 'fa-temperature-half', badge: 'Spare Part', price: 600, image: 'XH-3001.png',
+            { id: 'controller-xh3001', name: 'XH-W3001 Temperature Controller', category: 'Spare Parts', icon: 'fa-temperature-half', badge: 'Spare Part', price: 600,
               desc: 'Digital temperature controller for incubator applications.' },
-            { id: 'controller-xh3002', name: 'XH-W3002 Temperature Controller', category: 'Spare Parts', icon: 'fa-temperature-half', badge: 'Spare Part', price: 700, image: 'XH-3002.jpg',
+            { id: 'controller-xh3002', name: 'XH-W3002 Temperature Controller', category: 'Spare Parts', icon: 'fa-temperature-half', badge: 'Spare Part', price: 700,
               desc: 'Digital temperature controller for incubator temperature control.' },
-            { id: '6-watt-turning-motor', name: 'Egg Turning Motor', category: 'Spare Parts', icon: 'fa-rotate', badge: 'Spare Part', price: 1200, image: 'turning motor 6 watt.jpeg',
+            { id: '6-watt-turning-motor', name: 'Egg Turning Motor', category: 'Spare Parts', icon: 'fa-rotate', badge: 'Spare Part', price: 1200,
               desc: 'Low-speed turning motor for automatic egg tray rotation in incubators.' },
- 	{ id: '14-watt-turning-motor', name: 'Egg Turning Motor', category: 'Spare Parts', icon: 'fa-rotate', badge: 'Spare Part', price: 1800, image: 'turning motor 14 watt.jpg',
+ 	{ id: '14-watt-turning-motor', name: 'Egg Turning Motor', category: 'Spare Parts', icon: 'fa-rotate', badge: 'Spare Part', price: 1800,
               desc: 'Low-speed turning motor for automatic egg tray rotation in incubators.' },
  	{ id: 'heater', name: 'Heating Element', category: 'Spare Parts', icon: 'fa-fire', badge: 'Spare Part', price: null,
               desc: 'Replacement heater for incubators of different sizes. Tell us your model for the right rating.' },
-	{ id: 'digital-timer', name: 'Digital Timer Control', category: 'Spare Parts', icon: 'fa-clock', badge: 'Spare Part', price: 1200, image: 'digital timer.jpg',
+	{ id: 'digital-timer', name: 'Digital Timer Control', category: 'Spare Parts', icon: 'fa-clock', badge: 'Spare Part', price: 1200,
               desc: 'Digital timer control for incubator operation.' },
-	{ id: 'mechanical-timer', name: 'Mechanical Timer Control', category: 'Spare Parts', icon: 'fa-clock', badge: 'Spare Part', price: 1800, image: 'mechnical timer.jpg',
+	{ id: 'mechanical-timer', name: 'Mechanical Timer Control', category: 'Spare Parts', icon: 'fa-clock', badge: 'Spare Part', price: 1800,
               desc: 'Mechanical timer control for incubator operation.' },
-	 { id: 'fan-8-inch', name: '8-inch Circulation Fan', category: 'Spare Parts', icon: 'fa-fan', badge: 'Spare Part', price: 3000, image: '8inch axial fan.jpg',
+	 { id: 'fan-8-inch', name: '8-inch Circulation Fan', category: 'Spare Parts', icon: 'fa-fan', badge: 'Spare Part', price: 3000,
               desc: 'Air circulation and ventilation fans for even temperature inside the incubator.' },
- 	{ id: 'fan-black-axial', name: 'Black Axial Circulation Fan', category: 'Spare Parts', icon: 'fa-fan', badge: 'Spare Part', price: 6000, image: 'black axial fan.jpg',
+ 	{ id: 'fan-black-axial', name: 'Black Axial Circulation Fan', category: 'Spare Parts', icon: 'fa-fan', badge: 'Spare Part', price: 6000,
               desc: 'Air circulation and ventilation fans for even temperature inside the incubator.' },
 
             {
@@ -1039,7 +1101,7 @@
               icon: 'fa-fire',
               badge: 'Spare Part',
               price: null,
-              image: 'spare-heating-rods.jpg',
+              image: '300 -500 watt humidity rod.jpg',
               desc: 'Tubular heating rods for compatible equipment. Confirm length, wattage and voltage before ordering.'
             },
             {
@@ -1112,11 +1174,11 @@
             grid.innerHTML = PRODUCTS
                 .filter(p => filter === 'all' || p.category === filter)
                 .map(p => `
-                    <article class="product-card">
-                        <div class="product-image">
+                    <article class="product-card" data-product-id="${p.id}">
+                        <div class="product-image" role="button" tabindex="0" aria-label="View details for ${p.name}">
                             <span class="product-badge">${p.badge}</span>
                             ${p.image
-                                ? `<img class="product-photo" src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">`
+                                ? `<img class="product-photo" src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend','<i class=\\"fas ${p.icon}\\"></i>')">`
                                 : `<i class="fas ${p.icon}"></i>`}
 
                         </div>
@@ -1205,6 +1267,50 @@
             ].join('\n');
             window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
         }
+
+        function openProductModal(product) {
+            if (!product) return;
+            const imageBox = document.getElementById('productModalImage');
+            imageBox.innerHTML = product.image
+                ? `<img src="${product.image}" alt="${product.name}" onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\\"fas ${product.icon}\\"></i>'">`
+                : `<i class="fas ${product.icon}"></i>`;
+            document.getElementById('productModalTitle').textContent = product.name;
+            document.getElementById('productModalCategory').textContent = product.category;
+            document.getElementById('productModalDescription').textContent = product.desc;
+            document.getElementById('productModalPrice').textContent =
+                Number.isFinite(product.price) && product.price > 0 ? formatNPR(product.price) : 'Price on request';
+            document.getElementById('productModalOrder').href = whatsappOrderUrl(product);
+            document.getElementById('productModal').classList.add('open');
+            document.body.classList.add('cart-open');
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').classList.remove('open');
+            document.body.classList.remove('cart-open');
+        }
+
+        document.getElementById('productsGrid').addEventListener('click', e => {
+            const imageArea = e.target.closest('.product-image');
+            if (!imageArea) return;
+            const card = imageArea.closest('.product-card');
+            const product = PRODUCTS.find(p => p.id === card?.dataset.productId);
+            if (product) openProductModal(product);
+        });
+
+        document.getElementById('productsGrid').addEventListener('keydown', e => {
+            if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('product-image')) {
+                e.preventDefault();
+                const card = e.target.closest('.product-card');
+                const product = PRODUCTS.find(p => p.id === card?.dataset.productId);
+                if (product) openProductModal(product);
+            }
+        });
+
+        document.getElementById('closeProductModal').addEventListener('click', closeProductModal);
+        document.getElementById('productModal').addEventListener('click', e => {
+            if (e.target.id === 'productModal') closeProductModal();
+        });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeProductModal(); });
 
         document.getElementById('productsGrid').addEventListener('click', e => {
             const btn = e.target.closest('.add-to-cart-btn');
