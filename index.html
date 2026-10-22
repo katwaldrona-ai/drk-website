@@ -383,24 +383,6 @@
             padding: 1.5rem;
             box-shadow: 0 20px 60px rgba(0,0,0,.3);
         }
-#productModalDescription {
-    color: #334155;
-    font-size: 16px;
-    line-height: 1.8;
-    margin: 12px 0 18px;
-    white-space: normal;
-    overflow-wrap: anywhere;
-}
-
-.product-modal-card {
-    width: min(560px, 94vw);
-    max-height: 85vh;
-    overflow-y: auto;
-    padding: 1.25rem;
-    color: #1e293b;
-    box-sizing: border-box;
-}
-
         .product-modal-close {
             position: absolute;
             top: .65rem;
@@ -415,30 +397,6 @@
             cursor: pointer;
             z-index: 1;
         }
-.product-modal-close {
-    position: absolute;
-    top: .65rem;
-    right: .8rem;
-    width: 40px;
-    height: 40px;
-    border: 0;
-    border-radius: 50%;
-    background: #e2e8f0;
-    color: #0f172a;
-    font-size: 1.5rem;
-    cursor: pointer;
-    z-index: 1;
-}
-
-/* Description स्पष्ट बनाउने CSS */
-#productModalDescription {
-    color: #333333;
-    font-size: 15px;
-    line-height: 1.7;
-    margin: 10px 0 14px;
-    overflow-wrap: anywhere;
-}
-
         .product-modal-image {
             display: grid;
             place-items: center;
@@ -902,6 +860,15 @@
                 right: -100%;
             }
         }
+        #productModalDescription {
+            color: #334155;
+            font-size: 16px;
+            line-height: 1.7;
+            margin: 10px 0 14px;
+            white-space: normal;
+            overflow-wrap: anywhere;
+        }
+
     </style>
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"Organization","name":"DRK Tech Trading Pvt. Ltd.","url":"https://drktech.com.np/","email":"drktechtrading@gmail.com","telephone":"+977-9865210287","address":{"@type":"PostalAddress","addressLocality":"Hetauda","addressRegion":"Makwanpur","addressCountry":"NP"},"description":"Egg incubators, incubator spare parts, electrical and electronic products, and poultry automation solutions in Nepal.","areaServed":{"@type":"Country","name":"Nepal"}}
@@ -1238,9 +1205,8 @@
                         <div class="product-image" role="button" tabindex="0" aria-label="View details for ${p.name}">
                             <span class="product-badge">${p.badge}</span>
                             ${p.image
-                                ? `<img class="product-photo" src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend','<i class=\\"fas ${p.icon}\\"></i>')">`
+                                ? `<img class="product-photo" src="${p.image}" alt="${p.name}" loading="lazy">`
                                 : `<i class="fas ${p.icon}"></i>`}
-
                         </div>
                         <div class="product-info">
                             <h3 class="product-title">${p.name}</h3>
@@ -1255,6 +1221,20 @@
                             </div>
                         </div>
                     </article>`).join('');
+
+            grid.querySelectorAll('img.product-photo').forEach(img => {
+                img.addEventListener('error', () => {
+                    const parent = img.parentElement;
+                    const card = img.closest('.product-card');
+                    const productData = PRODUCTS.find(p => p.id === card?.dataset.productId);
+                    img.remove();
+                    if (parent && productData) {
+                        const icon = document.createElement('i');
+                        icon.className = `fas ${productData.icon}`;
+                        parent.appendChild(icon);
+                    }
+                }, { once: true });
+            });
         }
 
         function renderCart() {
@@ -1332,8 +1312,17 @@
             if (!product) return;
             const imageBox = document.getElementById('productModalImage');
             imageBox.innerHTML = product.image
-                ? `<img src="${product.image}" alt="${product.name}" onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\\"fas ${product.icon}\\"></i>'">`
+                ? `<img src="${product.image}" alt="${product.name}">`
                 : `<i class="fas ${product.icon}"></i>`;
+            const modalImg = imageBox.querySelector('img');
+            if (modalImg) {
+                modalImg.addEventListener('error', () => {
+                    imageBox.innerHTML = '';
+                    const icon = document.createElement('i');
+                    icon.className = `fas ${product.icon}`;
+                    imageBox.appendChild(icon);
+                }, { once: true });
+            }
             document.getElementById('productModalTitle').textContent = product.name;
             document.getElementById('productModalCategory').textContent = product.category;
             document.getElementById('productModalDescription').textContent = product.desc;
