@@ -1359,6 +1359,7 @@ ${(p.images && p.images.length) || p.image
         function openProductModal(product) {
             if (!product) return;
             
+
 const imageBox = document.getElementById('productModalImage');
 const productImages = product.images || (product.image ? [product.image] : []);
 
@@ -1376,10 +1377,12 @@ if (productImages.length) {
     });
 } else {
     imageBox.classList.remove('product-modal-gallery');
+
     const icon = document.createElement('i');
     icon.className = `fas ${product.icon}`;
     imageBox.appendChild(icon);
 }
+
 
             const modalImg = imageBox.querySelector('img');
             if (modalImg) {
