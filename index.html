@@ -427,6 +427,24 @@
             padding: 0.5rem;
             background: #fff;
         }
+.product-modal-image.product-modal-gallery {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: auto;
+    min-height: 200px;
+    padding: 10px;
+}
+
+.product-modal-gallery img {
+    width: calc(50% - 5px);
+    height: min(42vh, 300px);
+    object-fit: contain;
+    background: #fff;
+    border-radius: 8px;
+}
+
 
         .product-badge {
             position: absolute;
@@ -1058,7 +1076,7 @@
     category: 'Spare Parts',
     icon: 'fa-temperature-half',
     badge: 'Spare Part',
-    image: ['w1209.jpeg','w1209front.jpeg'], price: 500,
+    image: ['w1209.jpeg', 'w1209front.jpeg'], price: 500,
     desc: 'Digital temperature controller for incubator applications.'
 },
           {
@@ -1232,9 +1250,11 @@
                     <article class="product-card" data-product-id="${p.id}">
                         <div class="product-image" role="button" tabindex="0" aria-label="View details for ${p.name}">
                             <span class="product-badge">${p.badge}</span>
-                            ${p.image
-                                ? `<img class="product-photo" src="${p.image}" alt="${p.name}" loading="lazy">`
-                                : `<i class="fas ${p.icon}"></i>`}
+                           
+${(p.images && p.images.length) || p.image
+    ? `<img class="product-photo" src="${(p.images && p.images.length) ? p.images[0] : p.image}" alt="${p.name}" loading="lazy">`
+    : `<i class="fas ${p.icon}"></i>`}
+
                         </div>
                         <div class="product-info">
                             <h3 class="product-title">${p.name}</h3>
@@ -1338,10 +1358,29 @@
 
         function openProductModal(product) {
             if (!product) return;
-            const imageBox = document.getElementById('productModalImage');
-            imageBox.innerHTML = product.image
-                ? `<img src="${product.image}" alt="${product.name}">`
-                : `<i class="fas ${product.icon}"></i>`;
+            
+const imageBox = document.getElementById('productModalImage');
+const productImages = product.images || (product.image ? [product.image] : []);
+
+imageBox.innerHTML = '';
+
+if (productImages.length) {
+    imageBox.classList.add('product-modal-gallery');
+
+    productImages.forEach((src) => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = product.name;
+        img.onerror = () => img.remove();
+        imageBox.appendChild(img);
+    });
+} else {
+    imageBox.classList.remove('product-modal-gallery');
+    const icon = document.createElement('i');
+    icon.className = `fas ${product.icon}`;
+    imageBox.appendChild(icon);
+}
+
             const modalImg = imageBox.querySelector('img');
             if (modalImg) {
                 modalImg.addEventListener('error', () => {
