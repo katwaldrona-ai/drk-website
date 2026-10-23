@@ -913,6 +913,42 @@
             overflow-wrap: anywhere;
         }
 
+
+        .photo-lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(2, 6, 23, .92);
+            cursor: zoom-out;
+        }
+        .photo-lightbox img {
+            display: block;
+            max-width: 96vw;
+            max-height: 92vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            background: #fff;
+            border-radius: 8px;
+            cursor: default;
+        }
+        .photo-lightbox-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            border: 0;
+            border-radius: 50%;
+            background: #fff;
+            color: #111827;
+            font-size: 30px;
+            cursor: pointer;
+        }
     </style>
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"Organization","name":"DRK Tech Trading Pvt. Ltd.","url":"https://drktech.com.np/","email":"drktechtrading@gmail.com","telephone":"+977-9865210287","address":{"@type":"PostalAddress","addressLocality":"Hetauda","addressRegion":"Makwanpur","addressCountry":"NP"},"description":"Egg incubators, incubator spare parts, electrical and electronic products, and poultry automation solutions in Nepal.","areaServed":{"@type":"Country","name":"Nepal"}}
@@ -1374,6 +1410,32 @@
                         imageBox.appendChild(icon);
                     }
                 };
+                img.title = 'Click to enlarge photo';
+                img.style.cursor = 'zoom-in';
+                img.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    const lightbox = document.createElement('div');
+                    lightbox.className = 'photo-lightbox';
+                    lightbox.setAttribute('role', 'dialog');
+                    lightbox.setAttribute('aria-label', 'Enlarged product photo');
+                    const largeImg = document.createElement('img');
+                    largeImg.src = img.src;
+                    largeImg.alt = img.alt;
+                    const closeBtn = document.createElement('button');
+                    closeBtn.className = 'photo-lightbox-close';
+                    closeBtn.type = 'button';
+                    closeBtn.setAttribute('aria-label', 'Close enlarged photo');
+                    closeBtn.textContent = '×';
+                    const closeLightbox = () => lightbox.remove();
+                    closeBtn.addEventListener('click', closeLightbox);
+                    lightbox.addEventListener('click', (e) => {
+                        if (e.target === lightbox) closeLightbox();
+                    });
+                    largeImg.addEventListener('click', (e) => e.stopPropagation());
+                    lightbox.append(largeImg, closeBtn);
+                    document.body.appendChild(lightbox);
+                    closeBtn.focus();
+                });
                 imageBox.appendChild(img);
 
                 if (productImages.length > 1) {
