@@ -414,20 +414,48 @@
             border-radius: 10px;
         }
         .product-modal-image.product-modal-gallery {
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            height: auto;
-            min-height: 200px;
-            padding: 10px;
+            height: min(42vh, 340px);
+            padding: 10px 48px;
         }
         .product-modal-gallery img {
-            width: calc(50% - 5px);
-            height: min(42vh, 300px);
+            display: block;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
             background: #fff;
             border-radius: 8px;
+        }
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            border: 0;
+            border-radius: 50%;
+            background: #e2e8f0;
+            color: #0f172a;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 2;
+        }
+        .gallery-prev { left: 8px; }
+        .gallery-next { right: 8px; }
+        .gallery-count {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 4px 10px;
+            border-radius: 20px;
+            background: rgba(15, 23, 42, .78);
+            color: #fff;
+            font-size: .8rem;
+            z-index: 2;
         }
         .product-modal-card h3 { font-size: 1.5rem; margin: .5rem 0; }
         .product-modal-card p { color: var(--text-muted); margin: .5rem 0 1rem; }
@@ -1331,18 +1359,48 @@
             const imageBox = document.getElementById('productModalImage');
             const productImages = product.images || (product.image ? [product.image] : []);
             imageBox.innerHTML = '';
+            imageBox.classList.remove('product-modal-gallery');
 
             if (productImages.length) {
-                imageBox.classList.toggle('product-modal-gallery', productImages.length > 1);
-                productImages.forEach((src) => {
-                    const img = document.createElement('img');
-                    img.src = src;
-                    img.alt = product.name;
-                    img.onerror = () => img.remove();
-                    imageBox.appendChild(img);
-                });
+                if (productImages.length > 1) imageBox.classList.add('product-modal-gallery');
+                const img = document.createElement('img');
+                img.src = productImages[0];
+                img.alt = product.name;
+                img.onerror = () => {
+                    img.remove();
+                    if (!imageBox.querySelector('i')) {
+                        const icon = document.createElement('i');
+                        icon.className = `fas ${product.icon}`;
+                        imageBox.appendChild(icon);
+                    }
+                };
+                imageBox.appendChild(img);
+
+                if (productImages.length > 1) {
+                    let currentImage = 0;
+                    const count = document.createElement('span');
+                    count.className = 'gallery-count';
+                    count.textContent = `1 / ${productImages.length}`;
+                    const showImage = (index) => {
+                        currentImage = (index + productImages.length) % productImages.length;
+                        img.src = productImages[currentImage];
+                        count.textContent = `${currentImage + 1} / ${productImages.length}`;
+                    };
+                    const prev = document.createElement('button');
+                    prev.type = 'button';
+                    prev.className = 'gallery-nav gallery-prev';
+                    prev.setAttribute('aria-label', 'Previous photo');
+                    prev.textContent = '‹';
+                    prev.addEventListener('click', () => showImage(currentImage - 1));
+                    const next = document.createElement('button');
+                    next.type = 'button';
+                    next.className = 'gallery-nav gallery-next';
+                    next.setAttribute('aria-label', 'Next photo');
+                    next.textContent = '›';
+                    next.addEventListener('click', () => showImage(currentImage + 1));
+                    imageBox.append(prev, next, count);
+                }
             } else {
-                imageBox.classList.remove('product-modal-gallery');
                 const icon = document.createElement('i');
                 icon.className = `fas ${product.icon}`;
                 imageBox.appendChild(icon);
