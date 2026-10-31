@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ne">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
     <title>DRK Tech Trading | Premium Incubators & Poultry Automation Nepal</title>
     <meta name="description" content="DRK Tech Trading Pvt. Ltd. supplies egg incubators, incubator spare parts, electrical and electronic products, and hatchery automation solutions in Nepal. Order via WhatsApp.">
     <link rel="canonical" href="https://drktech.com.np/">
@@ -28,7 +31,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Noto Sans Devanagari', 'Segoe UI', Tahoma, sans-serif;
         }
 
         html { scroll-behavior: smooth; }
@@ -103,6 +106,18 @@
         }
 
         .nav-links a:hover { color: var(--accent); }
+
+        .language-toggle {
+            background: rgba(255,255,255,0.12);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            padding: 0.55rem 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .language-toggle:hover { background: var(--accent); color: var(--primary); }
 
         .cart-icon-container {
             position: relative;
@@ -966,13 +981,14 @@
                 <small>TRADING PVT. LTD.</small>
             </a>
             <nav class="nav-links">
-                <a href="#products">Products</a>
-                <a href="#how">How to Order</a>
-                <a href="#contact">Contact</a>
+                <a href="#products" data-i18n="navProducts">उत्पादन</a>
+                <a href="#how" data-i18n="navHow">अर्डर गर्ने तरिका</a>
+                <a href="#contact" data-i18n="navContact">सम्पर्क</a>
             </nav>
+            <button class="language-toggle" id="languageToggle" type="button">English</button>
             <button class="cart-icon-container" id="cartIconBtn" aria-label="Open order list">
                 <i class="fas fa-shopping-cart"></i>
-                <span class="cart-label">My Order</span>
+                <span class="cart-label" data-i18n="myOrder">मेरो अर्डर</span>
                 <span class="cart-count" id="cartCount">0</span>
             </button>
         </div>
@@ -982,36 +998,36 @@
     <!-- Main Branding Showcase -->
     <section class="hero">
         <div class="hero-content">
-            <div class="eyebrow">Incubation • Electrical • Automation</div>
-            <h2>Smarter Poultry Production, <span>Built to Last</span></h2>
-            <p>Egg incubators, dependable spare parts, and electrical &amp; automation products for poultry farms and hatchery businesses across Nepal.</p>
+            <div class="eyebrow" data-i18n="eyebrow">इन्क्युबेटर • विद्युतीय • अटोमेसन</div>
+            <h2><span data-i18n="heroTitle">आधुनिक पोल्ट्री उत्पादन, भरपर्दो समाधान</span></h2>
+            <p data-i18n="heroDesc">नेपालभरका पोल्ट्री फार्म तथा ह्याचरीका लागि अण्डा इन्क्युबेटर, भरपर्दो स्पेयर पार्ट्स र विद्युतीय तथा अटोमेसन सामग्री।</p>
             <div class="hero-actions">
-                <a href="#products" class="btn btn-primary"><i class="fas fa-store"></i> Browse Products</a>
-                <a href="https://wa.me/9779865210287?text=Namaste%2C%20I%20want%20to%20know%20about%20your%20egg%20incubators." target="_blank" rel="noopener" class="btn btn-outline"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+                <a href="#products" class="btn btn-primary"><i class="fas fa-store"></i> <span data-i18n="browse">उत्पादन हेर्नुहोस्</span></a>
+                <a href="https://wa.me/9779865210287?text=Namaste%2C%20I%20want%20to%20know%20about%20your%20egg%20incubators." target="_blank" rel="noopener" class="btn btn-outline"><i class="fab fa-whatsapp"></i> <span data-i18n="chatWhatsApp">WhatsApp मा कुरा गर्नुहोस्</span></a>
             </div>
         </div>
     </section>
 
     <div class="trust">
         <div class="trust-row">
-            <div><i class="fas fa-circle-check"></i>Quality-focused products</div>
-            <div><i class="fas fa-circle-check"></i>Affordable, practical solutions</div>
-            <div><i class="fas fa-circle-check"></i>Technical support for hatcheries</div>
+            <div><i class="fas fa-circle-check"></i><span data-i18n="trust1">गुणस्तरमा ध्यान दिइएका सामग्री</span></div>
+            <div><i class="fas fa-circle-check"></i><span data-i18n="trust2">किफायती र व्यवहारिक समाधान</span></div>
+            <div><i class="fas fa-circle-check"></i><span data-i18n="trust3">ह्याचरीका लागि प्राविधिक सहयोग</span></div>
         </div>
     </div>
 
     <!-- Product Catalog -->
     <section class="catalog-container" id="products">
-        <h2 class="section-title">Products &amp; Solutions</h2>
-        <p class="section-subtitle">Add the items you need to your order list, then send it to us on WhatsApp. We'll reply with prices, availability, and specifications.</p>
+        <h2 class="section-title" data-i18n="productsTitle">उत्पादन तथा समाधान</h2>
+        <p class="section-subtitle" data-i18n="productsDesc">आवश्यक सामग्री अर्डर सूचीमा राखेर WhatsApp मार्फत पठाउनुहोस्। हामी मूल्य, उपलब्धता र विवरण जानकारी गराउनेछौँ।</p>
 
         <div class="filter-bar" id="filterBar">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="Incubators">Incubators</button>
-            <button class="filter-btn" data-filter="Spare Parts">Spare Parts</button>
-            <button class="filter-btn" data-filter="Electrical">Electrical</button>
-            <button class="filter-btn" data-filter="Automation">Automation</button>
-			<button class="filter-btn" data-filter="Poultry">Poultry</button>
+            <button class="filter-btn active" data-filter="all" data-i18n="filterAll">सबै</button>
+            <button class="filter-btn" data-filter="Incubators" data-i18n="filterIncubators">इन्क्युबेटर</button>
+            <button class="filter-btn" data-filter="Spare Parts" data-i18n="filterSpare">स्पेयर पार्ट्स</button>
+            <button class="filter-btn" data-filter="Electrical" data-i18n="filterElectrical">विद्युतीय</button>
+            <button class="filter-btn" data-filter="Automation" data-i18n="filterAutomation">अटोमेसन</button>
+			<button class="filter-btn" data-filter="Poultry" data-i18n="filterPoultry">पोल्ट्री</button>
         </div>
 
         <div class="products-grid" id="productsGrid"></div>
@@ -1020,23 +1036,23 @@
     <!-- How to Order -->
     <section class="why" id="how">
         <div class="why-inner">
-            <h2 class="section-title">How to Order</h2>
-            <p class="section-subtitle">Simple, personal ordering — no online payment needed.</p>
+            <h2 class="section-title" data-i18n="howTitle">अर्डर गर्ने तरिका</h2>
+            <p class="section-subtitle" data-i18n="howDesc">सजिलो अर्डर प्रक्रिया — अनलाइन भुक्तानी आवश्यक छैन।</p>
             <div class="steps">
                 <div class="step">
                     <span class="step-num">01</span>
-                    <h3>Build your order list</h3>
-                    <p>Add incubators, spare parts, or electrical products and set the quantity you need.</p>
+                    <h3 data-i18n="step1Title">आफ्नो अर्डर सूची बनाउनुहोस्</h3>
+                    <p data-i18n="step1Desc">इन्क्युबेटर, स्पेयर पार्ट्स वा विद्युतीय सामग्री छानेर आवश्यक संख्या राख्नुहोस्।</p>
                 </div>
                 <div class="step">
                     <span class="step-num">02</span>
-                    <h3>Send it on WhatsApp</h3>
-                    <p>Tap "Send Order via WhatsApp" — your list is sent to our team as a ready-made message.</p>
+                    <h3 data-i18n="step2Title">WhatsApp मा पठाउनुहोस्</h3>
+                    <p data-i18n="step2Desc">WhatsApp बाट अर्डर पठाउनुहोस्। तपाईंको सूची तयार सन्देशका रूपमा हाम्रो टोलीमा पुग्नेछ।</p>
                 </div>
                 <div class="step">
                     <span class="step-num">03</span>
-                    <h3>Get price &amp; confirm</h3>
-                    <p>We confirm prices, availability, compatibility, and delivery before you pay.</p>
+                    <h3 data-i18n="step3Title">मूल्य बुझेर निश्चित गर्नुहोस्</h3>
+                    <p data-i18n="step3Desc">भुक्तानीअघि मूल्य, उपलब्धता, मिल्दोपन र डेलिभरी निश्चित गरिन्छ।</p>
                 </div>
             </div>
         </div>
@@ -1046,15 +1062,15 @@
     <section class="contact" id="contact">
         <div class="contact-inner">
             <div class="contact-copy">
-                <h2>Need an incubator or <span>spare part?</span></h2>
-                <p>Contact DRK Tech Trading Pvt. Ltd. for product availability, prices, specifications, and custom incubator requirements. We serve customers across Nepal.</p>
-                <a href="https://wa.me/9779865210287?text=Namaste%2C%20I%20want%20to%20know%20about%20your%20egg%20incubators." target="_blank" rel="noopener" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Chat with us on WhatsApp</a>
+                <h2 data-i18n="contactTitle">इन्क्युबेटर वा स्पेयर पार्ट्स चाहिन्छ?</h2>
+                <p data-i18n="contactDesc">उपलब्धता, मूल्य, विवरण वा आफूअनुसारको इन्क्युबेटरका लागि DRK Tech Trading Pvt. Ltd. मा सम्पर्क गर्नुहोस्।</p>
+                <a href="https://wa.me/9779865210287?text=Namaste%2C%20I%20want%20to%20know%20about%20your%20egg%20incubators." target="_blank" rel="noopener" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> <span data-i18n="chatUs">WhatsApp मा सम्पर्क गर्नुहोस्</span></a>
             </div>
             <div class="contact-card">
                 <h3>DRK Tech Trading Pvt. Ltd.</h3>
                 <div class="contact-line">
                     <i class="fab fa-whatsapp"></i>
-                    <div><strong>Phone / WhatsApp</strong><a href="https://wa.me/9779865210287" target="_blank" rel="noopener">9865210287</a></div>
+                    <div><strong data-i18n="phoneLabel">फोन / WhatsApp</strong><a href="https://wa.me/9779865210287" target="_blank" rel="noopener">9865210287</a></div>
                 </div>
                 <div class="contact-line">
                     <i class="fas fa-envelope"></i>
@@ -1062,11 +1078,11 @@
                 </div>
                 <div class="contact-line">
                     <i class="fas fa-location-dot"></i>
-                    <div><strong>Location</strong>Hetauda, Makwanpur, Nepal</div>
+                    <div><strong data-i18n="locationLabel">ठेगाना</strong>Hetauda, Makwanpur, Nepal</div>
                 </div>
                 <div class="contact-line">
                     <i class="fas fa-globe"></i>
-                    <div><strong>Website</strong>drktech.com.np</div>
+                    <div><strong data-i18n="websiteLabel">वेबसाइट</strong>drktech.com.np</div>
                 </div>
             </div>
         </div>
@@ -1076,7 +1092,7 @@
     <footer>
         <div class="footer-row">
             <div>© 2026 DRK Tech Trading Pvt. Ltd. All rights reserved.</div>
-            <div>Egg Incubators • Spare Parts • Electrical • Automation</div>
+            <div data-i18n="footerProducts">अण्डा इन्क्युबेटर • स्पेयर पार्ट्स • विद्युतीय • अटोमेसन</div>
             <nav class="social-links" aria-label="DRK social media links">
                 <a href="https://www.youtube.com/@drktech9567" target="_blank" rel="noopener noreferrer" aria-label="DRK Tech on YouTube"><i class="fab fa-youtube" aria-hidden="true"></i> YouTube</a>
                 <a href="https://www.tiktok.com/@drktechhetauda?_r=1&_t=ZS-9Ahmlsv3hOJ" target="_blank" rel="noopener noreferrer" aria-label="DRK Tech on TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i> TikTok</a>
@@ -1091,15 +1107,15 @@
     <!-- Shopping Sidebar Drawer -->
     <aside class="cart-sidebar" id="cartSidebar" aria-label="Order list">
         <div class="cart-header">
-            <h3><i class="fas fa-clipboard-list"></i> My Order List</h3>
+            <h3><i class="fas fa-clipboard-list"></i> <span data-i18n="orderList">मेरो अर्डर सूची</span></h3>
             <button class="close-cart" id="closeCartBtn" aria-label="Close"><i class="fas fa-xmark"></i></button>
         </div>
         <div class="cart-items-container" id="cartItems"></div>
         <div class="cart-footer">
-            <div class="cart-total"><span>Total items</span><span id="cartTotal">0</span></div>
-            <p class="cart-note">Prices are confirmed on WhatsApp based on model, quantity, and delivery location.</p>
-            <button class="checkout-btn" id="checkoutBtn"><i class="fab fa-whatsapp"></i> Send Order via WhatsApp</button>
-            <button class="clear-cart-btn" id="clearCartBtn">Clear list</button>
+            <div class="cart-total"><span data-i18n="totalItems">जम्मा सामग्री</span><span id="cartTotal">0</span></div>
+            <p class="cart-note" data-i18n="cartNote">मोडेल, संख्या र डेलिभरी स्थानअनुसार मूल्य WhatsApp मा निश्चित गरिनेछ।</p>
+            <button class="checkout-btn" id="checkoutBtn"><i class="fab fa-whatsapp"></i> <span data-i18n="sendOrder">WhatsApp बाट अर्डर पठाउनुहोस्</span></button>
+            <button class="clear-cart-btn" id="clearCartBtn" data-i18n="clearList">सूची खाली गर्नुहोस्</button>
         </div>
     </aside>
 
@@ -1110,11 +1126,11 @@
             <button class="product-modal-close" id="closeProductModal" type="button" aria-label="Close product details">&times;</button>
             <div class="product-modal-image" id="productModalImage"></div>
             <h3 id="productModalTitle"></h3>
-            <p><strong>Category:</strong> <span id="productModalCategory"></span></p>
+            <p><strong data-i18n="categoryLabel">श्रेणी:</strong> <span id="productModalCategory"></span></p>
             <p id="productModalDescription"></p>
-            <p><strong>Price:</strong> <span id="productModalPrice"></span></p>
+            <p><strong data-i18n="priceLabel">मूल्य:</strong> <span id="productModalPrice"></span></p>
             <a class="btn btn-whatsapp" id="productModalOrder" href="#" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                <i class="fab fa-whatsapp"></i> <span data-i18n="orderWhatsApp">WhatsApp बाट अर्डर गर्नुहोस्</span>
             </a>
         </div>
     </div>
@@ -1261,13 +1277,108 @@
 }
 ];
 
+
+        let currentLanguage = 'ne';
+        const uiText = {
+            en: {
+                navProducts:'Products', navHow:'How to Order', navContact:'Contact', myOrder:'My Order',
+                eyebrow:'Incubation • Electrical • Automation', heroTitle:'Smarter Poultry Production, Built to Last',
+                heroDesc:'Egg incubators, dependable spare parts, and electrical & automation products for poultry farms and hatchery businesses across Nepal.',
+                browse:'Browse Products', chatWhatsApp:'Chat on WhatsApp', trust1:'Quality-focused products',
+                trust2:'Affordable, practical solutions', trust3:'Technical support for hatcheries',
+                productsTitle:'Products & Solutions', productsDesc:"Add the items you need to your order list, then send it to us on WhatsApp. We'll reply with prices, availability, and specifications.",
+                filterAll:'All', filterIncubators:'Incubators', filterSpare:'Spare Parts', filterElectrical:'Electrical', filterAutomation:'Automation', filterPoultry:'Poultry',
+                howTitle:'How to Order', howDesc:'Simple, personal ordering — no online payment needed.',
+                step1Title:'Build your order list', step1Desc:'Add incubators, spare parts, or electrical products and set the quantity you need.',
+                step2Title:'Send it on WhatsApp', step2Desc:'Tap "Send Order via WhatsApp" — your list is sent to our team as a ready-made message.',
+                step3Title:'Get price & confirm', step3Desc:'We confirm prices, availability, compatibility, and delivery before you pay.',
+                contactTitle:'Need an incubator or spare part?', contactDesc:'Contact DRK Tech Trading Pvt. Ltd. for product availability, prices, specifications, and custom incubator requirements. We serve customers across Nepal.',
+                chatUs:'Chat with us on WhatsApp', phoneLabel:'Phone / WhatsApp', locationLabel:'Location', websiteLabel:'Website',
+                footerProducts:'Egg Incubators • Spare Parts • Electrical • Automation', orderList:'My Order List', totalItems:'Total items',
+                cartNote:'Prices are confirmed on WhatsApp based on model, quantity, and delivery location.',
+                sendOrder:'Send Order via WhatsApp', clearList:'Clear list', categoryLabel:'Category:', priceLabel:'Price:', orderWhatsApp:'Order via WhatsApp',
+                priceRequest:'Price on request', addQuote:'Add to Quote', added:'Added', emptyCart:'Your order list is empty.', emptyCartHint:'Add products to request a quote.',
+                each:'each', close:'Close', viewDetails:'View details for', previousPhoto:'Previous photo', nextPhoto:'Next photo'
+            },
+            ne: {
+                navProducts:'उत्पादन', navHow:'अर्डर गर्ने तरिका', navContact:'सम्पर्क', myOrder:'मेरो अर्डर',
+                eyebrow:'इन्क्युबेटर • विद्युतीय • अटोमेसन', heroTitle:'आधुनिक पोल्ट्री उत्पादन, भरपर्दो समाधान',
+                heroDesc:'नेपालभरका पोल्ट्री फार्म तथा ह्याचरीका लागि अण्डा इन्क्युबेटर, भरपर्दो स्पेयर पार्ट्स र विद्युतीय तथा अटोमेसन सामग्री।',
+                browse:'उत्पादन हेर्नुहोस्', chatWhatsApp:'WhatsApp मा कुरा गर्नुहोस्', trust1:'गुणस्तरमा ध्यान दिइएका सामग्री',
+                trust2:'किफायती र व्यवहारिक समाधान', trust3:'ह्याचरीका लागि प्राविधिक सहयोग',
+                productsTitle:'उत्पादन तथा समाधान', productsDesc:'आवश्यक सामग्री अर्डर सूचीमा राखेर WhatsApp मार्फत पठाउनुहोस्। हामी मूल्य, उपलब्धता र विवरण जानकारी गराउनेछौँ।',
+                filterAll:'सबै', filterIncubators:'इन्क्युबेटर', filterSpare:'स्पेयर पार्ट्स', filterElectrical:'विद्युतीय', filterAutomation:'अटोमेसन', filterPoultry:'पोल्ट्री',
+                howTitle:'अर्डर गर्ने तरिका', howDesc:'सजिलो अर्डर प्रक्रिया — अनलाइन भुक्तानी आवश्यक छैन।',
+                step1Title:'आफ्नो अर्डर सूची बनाउनुहोस्', step1Desc:'इन्क्युबेटर, स्पेयर पार्ट्स वा विद्युतीय सामग्री छानेर आवश्यक संख्या राख्नुहोस्।',
+                step2Title:'WhatsApp मा पठाउनुहोस्', step2Desc:'WhatsApp बाट अर्डर पठाउनुहोस्। तपाईंको सूची तयार सन्देशका रूपमा हाम्रो टोलीमा पुग्नेछ।',
+                step3Title:'मूल्य बुझेर निश्चित गर्नुहोस्', step3Desc:'भुक्तानीअघि मूल्य, उपलब्धता, मिल्दोपन र डेलिभरी निश्चित गरिन्छ।',
+                contactTitle:'इन्क्युबेटर वा स्पेयर पार्ट्स चाहिन्छ?', contactDesc:'उपलब्धता, मूल्य, विवरण वा आफूअनुसारको इन्क्युबेटरका लागि DRK Tech Trading Pvt. Ltd. मा सम्पर्क गर्नुहोस्। हामी नेपालभर सेवा दिन्छौँ।',
+                chatUs:'WhatsApp मा सम्पर्क गर्नुहोस्', phoneLabel:'फोन / WhatsApp', locationLabel:'ठेगाना', websiteLabel:'वेबसाइट',
+                footerProducts:'अण्डा इन्क्युबेटर • स्पेयर पार्ट्स • विद्युतीय • अटोमेसन', orderList:'मेरो अर्डर सूची', totalItems:'जम्मा सामग्री',
+                cartNote:'मोडेल, संख्या र डेलिभरी स्थानअनुसार मूल्य WhatsApp मा निश्चित गरिनेछ।',
+                sendOrder:'WhatsApp बाट अर्डर पठाउनुहोस्', clearList:'सूची खाली गर्नुहोस्', categoryLabel:'श्रेणी:', priceLabel:'मूल्य:', orderWhatsApp:'WhatsApp बाट अर्डर गर्नुहोस्',
+                priceRequest:'मूल्यका लागि सम्पर्क गर्नुहोस्', addQuote:'मूल्य बुझ्न सूचीमा राख्नुहोस्', added:'थपियो', emptyCart:'तपाईंको अर्डर सूची खाली छ।', emptyCartHint:'मूल्य बुझ्न उत्पादनहरू थप्नुहोस्।',
+                each:'प्रति थान', close:'बन्द गर्नुहोस्', viewDetails:'विवरण हेर्नुहोस्', previousPhoto:'अघिल्लो फोटो', nextPhoto:'अर्को फोटो'
+            }
+        };
+
+        const productNepali = {
+            'auto-incubator':['स्वचालित अण्डा इन्क्युबेटर','डिजिटल तापक्रम तथा आर्द्रता नियन्त्रण र स्वचालित अण्डा घुमाउने सुविधासहितको इन्क्युबेटर। विभिन्न क्षमतामा उपलब्ध।'],
+            'mini-incubator':['मिनी / साना फार्मका लागि इन्क्युबेटर','सानो फार्म तथा सुरुवात गर्नेहरूका लागि उपयुक्त। चलाउन सजिलो र भरपर्दो तापक्रम नियन्त्रण।'],
+            'custom-incubator':['आवश्यकताअनुसारको ह्याचरी इन्क्युबेटर','तपाईंको ह्याचरीको आवश्यकता अनुसार तयार गरिने ठूलो क्षमताको सेटर तथा ह्याचर।'],
+            'controller':['डिजिटल तापक्रम तथा आर्द्रता नियन्त्रक','सेन्सर, अलार्म र सटीक सेटिङ सुविधासहित इन्क्युबेटरका लागि प्रतिस्थापन नियन्त्रक।'],
+            'controller-w1209':['W1209 तापक्रम नियन्त्रक','इन्क्युबेटरमा प्रयोग हुने डिजिटल तापक्रम नियन्त्रक।'],
+            'controller-xh3001':['XH-W3001 तापक्रम नियन्त्रक','इन्क्युबेटरको तापक्रम नियन्त्रणका लागि डिजिटल नियन्त्रक।'],
+            'controller-xh3002':['XH-W3002 तापक्रम नियन्त्रक','इन्क्युबेटरको तापक्रम नियन्त्रणका लागि डिजिटल नियन्त्रक।'],
+            '6-watt-turning-motor':['६ वाट अण्डा घुमाउने मोटर','इन्क्युबेटरमा अण्डाको ट्रे स्वचालित रूपमा घुमाउने कम गतिको मोटर।'],
+            '14-watt-turning-motor':['१४ वाट अण्डा घुमाउने मोटर','इन्क्युबेटरमा अण्डाको ट्रे स्वचालित रूपमा घुमाउने कम गतिको मोटर।'],
+            'digital-timer':['डिजिटल टाइमर कन्ट्रोल','इन्क्युबेटर सञ्चालनका लागि डिजिटल टाइमर।'],
+            'mechanical-timer':['मेकानिकल टाइमर कन्ट्रोल','इन्क्युबेटर सञ्चालनका लागि मेकानिकल टाइमर।'],
+            'fan-8-inch':['८ इन्च सर्कुलेसन फ्यान','इन्क्युबेटरभित्र समान तापक्रम कायम गर्न हावा प्रवाह गर्ने फ्यान।'],
+            'fan-black-axial':['कालो एक्सियल सर्कुलेसन फ्यान','इन्क्युबेटरभित्र हावा प्रवाह तथा भेन्टिलेसनका लागि फ्यान।'],
+            'spare-heater-coil':['रिङ हिटर','इन्क्युबेटर तथा तताउने उपकरणका लागि गोलाकार हिटिङ एलिमेन्ट। साइज, भोल्टेज र वाट पुष्टि गर्नुहोस्।'],
+            'spare-u-heater':['यू-टाइप हिटर','यू आकारको ट्युबुलर हिटिङ एलिमेन्ट। अर्डरअघि नाप, भोल्टेज र वाट पुष्टि गर्नुहोस्।'],
+            'spare-stc1000':['सामान्य STC-1000 तापक्रम नियन्त्रक','हिटिङ तथा कुलिङका लागि डिजिटल तापक्रम नियन्त्रक। खरिदअघि मोडेल र भोल्टेज जाँच गर्नुहोस्।'],
+            'spare-stc-controller':['ओरिजिनल STC-1000 तापक्रम नियन्त्रक','डिस्प्ले र सेन्सर तारसहितको डिजिटल तापक्रम नियन्त्रक। अनुकूलता पुष्टि गर्नुहोस्।'],
+            'spare-humidity-Heater':['M452 तापक्रम तथा आर्द्रता नियन्त्रक','सेन्सर र रिले आउटपुटसहितको तापक्रम तथा आर्द्रता नियन्त्रण मोड्युल।'],
+            'spare-heating-rods':['ह्युमिडिटी रड','मिल्ने उपकरणका लागि ट्युबुलर हिटिङ रड। लम्बाइ, वाट र भोल्टेज पुष्टि गर्नुहोस्।'],
+            'xm-18 spare-incubator-controller':['XM-18 इन्क्युबेटर नियन्त्रक','इन्क्युबेटर सेटिङ नियन्त्रण गर्ने स्वचालित नियन्त्रक। मोडेल मिल्छ कि मिल्दैन पुष्टि गर्नुहोस्।'],
+            'spare-xm18-controller':['XM-18SW इन्क्युबेटर नियन्त्रक','डिजिटल इन्क्युबेटर नियन्त्रक। सही मोडेल, वायरिङ र सुविधाहरू पुष्टि गर्नुहोस्।'],
+            'spare-incubator-control-unit':['XM-18D इन्क्युबेटर नियन्त्रक','सेन्सर सामग्रीसहितको इन्क्युबेटर कन्ट्रोल युनिट। विवरण र अनुकूलताका लागि सम्पर्क गर्नुहोस्।'],
+            'egg-tray':['अण्डा राख्ने ट्रे','कुखुरा, हाँस तथा अन्य चराका अण्डाका लागि सेटर र ह्याचर ट्रे।'],
+            'electrical':['विद्युतीय तथा इलेक्ट्रोनिक सामग्री','उपकरण मर्मतका लागि रिले, कन्ट्याक्टर, स्विच, पावर सप्लाई, तार तथा अन्य सामग्री।'],
+            'automation':['पोल्ट्री अटोमेसन तथा कन्ट्रोल प्यानल','पोल्ट्री फार्म र ह्याचरीमा तापक्रम, आर्द्रता, भेन्टिलेसन तथा बत्ती नियन्त्रण गर्ने समाधान।'],
+            'nipple-cup-drinker':['निप्पल कप ड्रिंकर','पोल्ट्री फार्मका लागि स्वचालित पानी पिउने प्रणाली। चरालाई सफा पानी उपलब्ध गराउन सहयोग गर्छ।']
+        };
+
+        const categoryNepali = {'Incubators':'इन्क्युबेटर','Spare Parts':'स्पेयर पार्ट्स','Electrical':'विद्युतीय','Automation':'अटोमेसन','Poultry':'पोल्ट्री'};
+        const badgeNepali = {'Best Seller':'धेरै बिक्री हुने','Starter':'सुरुवाती मोडेल','Made to Order':'अर्डरअनुसार','Spare Part':'स्पेयर पार्ट','Accessory':'सहायक सामग्री','Electrical':'विद्युतीय','Automation':'अटोमेसन','Poultry':'पोल्ट्री'};
+
+        function productName(p) { return currentLanguage === 'ne' && productNepali[p.id] ? productNepali[p.id][0] : p.name; }
+        function productDesc(p) { return currentLanguage === 'ne' && productNepali[p.id] ? productNepali[p.id][1] : p.desc; }
+        function categoryName(c) { return currentLanguage === 'ne' ? (categoryNepali[c] || c) : c; }
+        function badgeName(b) { return currentLanguage === 'ne' ? (badgeNepali[b] || b) : b; }
+
+        function applyLanguage() {
+            const words = uiText[currentLanguage];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.dataset.i18n;
+                if (words[key]) el.textContent = words[key];
+            });
+            document.getElementById('languageToggle').textContent = currentLanguage === 'ne' ? 'English' : 'नेपाली';
+            document.documentElement.lang = currentLanguage === 'ne' ? 'ne' : 'en';
+            const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+            renderProducts(activeFilter);
+            renderCart();
+        }
+
         const formatNPR = n => 'Rs. ' + n.toLocaleString('en-IN');
 
         function whatsappOrderUrl(product) {
             const shownPrice = Number.isFinite(product.price) && product.price > 0
                 ? formatNPR(product.price)
                 : 'Price on request';
-            const message = `Namaste DRK Tech Trading, I want to order: ${product.name}. Price shown: ${shownPrice}. Please confirm availability and delivery details.`;
+            const message = currentLanguage === 'ne' ? `नमस्ते DRK Tech Trading, मलाई यो सामान अर्डर गर्नुछ: ${productName(product)}। देखाइएको मूल्य: ${shownPrice}। कृपया उपलब्धता र डेलिभरी विवरण पुष्टि गर्नुहोस्।` : `Namaste DRK Tech Trading, I want to order: ${product.name}. Price shown: ${shownPrice}. Please confirm availability and delivery details.`;
             return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
         }
 
@@ -1293,22 +1404,22 @@
                 .filter(p => filter === 'all' || p.category === filter)
                 .map(p => `
                     <article class="product-card" data-product-id="${p.id}">
-                        <div class="product-image" role="button" tabindex="0" aria-label="View details for ${p.name}">
-                            <span class="product-badge">${p.badge}</span>
+                        <div class="product-image" role="button" tabindex="0" aria-label="${uiText[currentLanguage].viewDetails} ${productName(p)}">
+                            <span class="product-badge">${badgeName(p.badge)}</span>
                             ${(p.images && p.images.length) || p.image
-                                ? `<img class="product-photo" src="${(p.images && p.images.length) ? p.images[0] : p.image}" alt="${p.name}" loading="lazy">`
+                                ? `<img class="product-photo" src="${(p.images && p.images.length) ? p.images[0] : p.image}" alt="${productName(p)}" loading="lazy">`
                                 : `<i class="fas ${p.icon}"></i>`}
                         </div>
                         <div class="product-info">
-                            <h3 class="product-title">${p.name}</h3>
-                            <p class="product-desc">${p.desc}</p>
+                            <h3 class="product-title">${productName(p)}</h3>
+                            <p class="product-desc">${productDesc(p)}</p>
                             <div class="product-meta">
-                                <div class="product-price">${p.price ? formatNPR(p.price) : 'Price on request'}<small>${p.category}</small></div>
+                                <div class="product-price">${p.price ? formatNPR(p.price) : uiText[currentLanguage].priceRequest}<small>${categoryName(p.category)}</small></div>
                                 ${Number.isFinite(p.price) && p.price > 0
                                     ? `<a class="add-to-cart-btn btn-whatsapp" href="${whatsappOrderUrl(p)}" target="_blank" rel="noopener noreferrer">
-                                        <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                                        <i class="fab fa-whatsapp"></i> ${uiText[currentLanguage].orderWhatsApp}
                                       </a>`
-                                    : `<button class="add-to-cart-btn" data-id="${p.id}"><i class="fas fa-clipboard-list"></i> Add to Quote</button>`}
+                                    : `<button class="add-to-cart-btn" data-id="${p.id}"><i class="fas fa-clipboard-list"></i> ${uiText[currentLanguage].addQuote}</button>`}
                             </div>
                         </div>
                     </article>`).join('');
@@ -1340,7 +1451,7 @@
             document.getElementById('clearCartBtn').style.display = totalQty ? 'block' : 'none';
 
             if (!entries.length) {
-                container.innerHTML = `<div class="empty-cart-msg"><i class="fas fa-basket-shopping"></i>Your order list is empty.<br>Add products to request a quote.</div>`;
+                container.innerHTML = `<div class="empty-cart-msg"><i class="fas fa-basket-shopping"></i>${uiText[currentLanguage].emptyCart}<br>${uiText[currentLanguage].emptyCartHint}</div>`;
                 return;
             }
 
@@ -1349,8 +1460,8 @@
                 return `
                     <div class="cart-item">
                         <div class="cart-item-details">
-                            <h4>${p.name}</h4>
-                            <p>${p.price ? formatNPR(p.price) + ' each' : 'Price on request'}</p>
+                            <h4>${productName(p)}</h4>
+                            <p>${p.price ? formatNPR(p.price) + ' ' + uiText[currentLanguage].each : uiText[currentLanguage].priceRequest}</p>
                         </div>
                         <div class="cart-item-actions">
                             <div class="qty-control">
@@ -1386,15 +1497,15 @@
         function checkout() {
             const lines = Object.entries(cart).map(([id, qty], i) => {
                 const p = PRODUCTS.find(x => x.id === id);
-                return `${i + 1}. ${p.name} x ${qty}`;
+                return `${i + 1}. ${productName(p)} x ${qty}`;
             });
             if (!lines.length) return;
             const message = [
-                'Namaste DRK Tech! I would like to order / get a quote for:',
+                currentLanguage === 'ne' ? 'नमस्ते DRK Tech! मलाई तलका सामान अर्डर गर्न / मूल्य बुझ्नुछ:' : 'Namaste DRK Tech! I would like to order / get a quote for:',
                 '',
                 ...lines,
                 '',
-                'Please share price, availability, and delivery details.'
+                currentLanguage === 'ne' ? 'कृपया मूल्य, उपलब्धता र डेलिभरी विवरण पठाउनुहोस्।' : 'Please share price, availability, and delivery details.'
             ].join('\n');
             window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
         }
@@ -1410,7 +1521,7 @@
                 if (productImages.length > 1) imageBox.classList.add('product-modal-gallery');
                 const img = document.createElement('img');
                 img.src = productImages[0];
-                img.alt = product.name;
+                img.alt = productName(product);
                 img.onerror = () => {
                     img.remove();
                     if (!imageBox.querySelector('i')) {
@@ -1476,11 +1587,11 @@
                 icon.className = `fas ${product.icon}`;
                 imageBox.appendChild(icon);
             }
-            document.getElementById('productModalTitle').textContent = product.name;
-            document.getElementById('productModalCategory').textContent = product.category;
-            document.getElementById('productModalDescription').textContent = product.desc;
+            document.getElementById('productModalTitle').textContent = productName(product);
+            document.getElementById('productModalCategory').textContent = categoryName(product.category);
+            document.getElementById('productModalDescription').textContent = productDesc(product);
             document.getElementById('productModalPrice').textContent =
-                Number.isFinite(product.price) && product.price > 0 ? formatNPR(product.price) : 'Price on request';
+                Number.isFinite(product.price) && product.price > 0 ? formatNPR(product.price) : uiText[currentLanguage].priceRequest;
             document.getElementById('productModalOrder').href = whatsappOrderUrl(product);
             document.getElementById('productModal').classList.add('open');
             document.body.classList.add('cart-open');
@@ -1515,14 +1626,14 @@
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeProductModal(); });
 
         document.getElementById('productsGrid').addEventListener('click', e => {
-            const btn = e.target.closest('.add-to-cart-btn');
+            const btn = e.target.closest('button.add-to-cart-btn[data-id]');
             if (!btn) return;
             updateQty(btn.dataset.id, 1);
             btn.classList.add('added');
-            btn.innerHTML = '<i class="fas fa-check"></i> Added';
+            btn.innerHTML = `<i class="fas fa-check"></i> ${uiText[currentLanguage].added}`;
             setTimeout(() => {
                 btn.classList.remove('added');
-                btn.innerHTML = '<i class="fas fa-cart-plus"></i> Add';
+                btn.innerHTML = `<i class="fas fa-clipboard-list"></i> ${uiText[currentLanguage].addQuote}`;
             }, 1200);
             const countEl = document.getElementById('cartCount');
             countEl.classList.remove('bump');
@@ -1557,8 +1668,12 @@
         });
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCart(); });
 
-        renderProducts();
-        renderCart();
+        document.getElementById('languageToggle').addEventListener('click', () => {
+            currentLanguage = currentLanguage === 'ne' ? 'en' : 'ne';
+            applyLanguage();
+        });
+
+        applyLanguage();
     </script>
 </body>
 </html>
