@@ -1354,8 +1354,8 @@
         const categoryNepali = {'Incubators':'इन्क्युबेटर','Spare Parts':'स्पेयर पार्ट्स','Electrical':'विद्युतीय','Automation':'अटोमेसन','Poultry':'पोल्ट्री'};
         const badgeNepali = {'Best Seller':'धेरै बिक्री हुने','Starter':'सुरुवाती मोडेल','Made to Order':'अर्डरअनुसार','Spare Part':'स्पेयर पार्ट','Accessory':'सहायक सामग्री','Electrical':'विद्युतीय','Automation':'अटोमेसन','Poultry':'पोल्ट्री'};
 
-        function productName(p) { return currentLanguage === 'ne' && productNepali[p.id] ? productNepali[p.id][0] : p.name; }
-        function productDesc(p) { return currentLanguage === 'ne' && productNepali[p.id] ? productNepali[p.id][1] : p.desc; }
+        function productName(p) { return p.name; }
+        function productDesc(p) { return productNepali[p.id] ? productNepali[p.id][1] : p.desc; }
         function categoryName(c) { return currentLanguage === 'ne' ? (categoryNepali[c] || c) : c; }
         function badgeName(b) { return currentLanguage === 'ne' ? (badgeNepali[b] || b) : b; }
 
