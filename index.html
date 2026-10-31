@@ -376,108 +376,30 @@
         .product-image { cursor: pointer; }
         .product-image:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
 
-        /* Product details popup */
-        .product-modal {
-            position: fixed;
-            inset: 0;
-            z-index: 3000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-            background: rgba(15, 23, 42, 0.78);
-        }
-        .product-modal.open { display: flex; }
-        .product-modal-card {
-            position: relative;
-            width: min(680px, 100%);
-            max-height: 90vh;
-            overflow-y: auto;
-            background: #fff;
-            border-radius: 14px;
-            padding: 1.5rem;
-            box-shadow: 0 20px 60px rgba(0,0,0,.3);
-        }
-        .product-modal-close {
-            position: absolute;
-            top: .65rem;
-            right: .8rem;
-            width: 40px;
-            height: 40px;
-            border: 0;
-            border-radius: 50%;
-            background: #e2e8f0;
-            color: #0f172a;
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 1;
-        }
-        .product-modal-image {
-            display: grid;
-            place-items: center;
-            height: min(42vh, 340px);
-            margin: .5rem 0 1rem;
-            background: #f8fafc;
-            border-radius: 10px;
-            color: var(--primary);
-            font-size: 4rem;
-        }
-        .product-modal-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 10px;
-        }
-        .product-modal-image.product-modal-gallery {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: min(42vh, 340px);
-            padding: 10px 48px;
-        }
-        .product-modal-gallery img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            background: #fff;
-            border-radius: 8px;
-        }
-        .gallery-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 36px;
-            height: 36px;
-            border: 0;
-            border-radius: 50%;
-            background: #e2e8f0;
-            color: #0f172a;
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 2;
-        }
-        .gallery-prev { left: 8px; }
-        .gallery-next { right: 8px; }
-        .gallery-count {
-            position: absolute;
-            bottom: 8px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 4px 10px;
-            border-radius: 20px;
-            background: rgba(15, 23, 42, .78);
-            color: #fff;
-            font-size: .8rem;
-            z-index: 2;
-        }
-        .product-modal-card h3 { font-size: 1.5rem; margin: .5rem 0; }
-        .product-modal-card p { color: var(--text-muted); margin: .5rem 0 1rem; }
-        .product-modal-card .btn { justify-content: center; }
-        @media (max-width: 600px) {
-            .product-modal-card { padding: 1rem; }
-        }
+        /* Product details popup: two-column gallery + details */
+        .product-modal { position:fixed; inset:0; z-index:3000; display:none; align-items:center; justify-content:center; padding:2rem; background:rgba(15,23,42,.78); }
+        .product-modal.open { display:flex; }
+        .product-modal-card { position:relative; display:grid; grid-template-columns:minmax(0, 1fr) minmax(0, .95fr); gap:2rem; width:min(1380px, 96vw); max-height:92vh; overflow-y:auto; background:#fff; border-radius:24px; padding:2rem; box-shadow:0 24px 70px rgba(0,0,0,.32); }
+        .product-modal-close { position:absolute; top:1rem; right:1rem; width:44px; height:44px; border:0; border-radius:50%; background:#e2e8f0; color:#0f172a; font-size:1.7rem; cursor:pointer; z-index:5; }
+        .product-modal-gallery-pane { min-width:0; }
+        .product-modal-image { position:relative; display:grid; place-items:center; height: min(60vh, 600px); min-height:320px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:18px; overflow:hidden; color:var(--primary); font-size:4rem; }
+        .product-modal-image img { width:100%; height:100%; object-fit:contain; border-radius:16px; background:#fff; padding:10px; }
+        .product-zoom-btn { position:absolute; top:14px; right:14px; width:48px; height:48px; border:0; border-radius:50%; background:#e2e8f0; color:#0f172a; font-size:1.2rem; cursor:pointer; box-shadow:0 3px 12px #0002; z-index:2; }
+        .product-thumbnails { display:flex; gap:12px; overflow-x:auto; padding:12px 2px 4px; }
+        .product-thumbnail { flex:0 0 100px; width:100px; height:90px; padding:4px; border:2px solid #e2e8f0; border-radius:14px; background:#f8fafc; cursor:pointer; }
+        .product-thumbnail.active { border-color:#1763c6; }
+        .product-thumbnail img { width:100%; height:100%; object-fit:contain; }
+        .product-modal-details { min-width:0; padding:1.2rem 0 .3rem; display:flex; flex-direction:column; }
+        .product-modal-details h3 { font-size:clamp(1.35rem,2vw,2rem); line-height:1.3; margin:0 3rem 1rem 0; color:#10213d; }
+        .product-modal-category { display:inline-flex; align-self:flex-start; background:#1763c6; color:white; border-radius:24px; padding:.45rem 1rem; font-weight:700; margin-bottom:1rem; }
+        .product-modal-price { font-size:clamp(1.25rem,2vw,1.8rem); font-weight:800; color:#10213d; margin:.3rem 0 1.3rem; }
+        .product-modal-price span { color:#e58a00; }
+        .product-modal-section { border-top:1px solid #e2e8f0; padding-top:1.2rem; margin-top:.4rem; }
+        .product-modal-section h4 { font-size:1.2rem; color:#10213d; margin:0 0 .7rem; }
+        .product-modal-section p { color:#334155; line-height:1.8; font-size:1.05rem; margin:0; }
+        .product-modal-order { margin-top:auto; padding-top:1.5rem; }
+        .product-modal-order .btn { width:100%; min-height:58px; justify-content:center; font-size:1.1rem; }
+        @media (max-width:760px) { .product-modal { padding:.6rem; align-items:flex-start; overflow-y:auto; } .product-modal-card { grid-template-columns:1fr; gap:.8rem; width:100%; max-height:none; min-height:0; padding:1rem; border-radius:16px; margin:auto 0; } .product-modal-image { height: min(62vw,380px); min-height:230px; } .product-modal-details { padding:.5rem 0 0; } .product-modal-details h3 { margin-right:3rem; } .product-thumbnail { flex-basis:78px; width:78px; height:72px; } .product-modal-order { padding-top:1rem; } }
 
         .product-image img.product-photo {
             width: 100%;
@@ -1124,14 +1046,24 @@
     <div class="product-modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="productModalTitle">
         <div class="product-modal-card">
             <button class="product-modal-close" id="closeProductModal" type="button" aria-label="Close product details">&times;</button>
-            <div class="product-modal-image" id="productModalImage"></div>
-            <h3 id="productModalTitle"></h3>
-            <p><strong data-i18n="categoryLabel">श्रेणी:</strong> <span id="productModalCategory"></span></p>
-            <p id="productModalDescription"></p>
-            <p><strong data-i18n="priceLabel">मूल्य:</strong> <span id="productModalPrice"></span></p>
-            <a class="btn btn-whatsapp" id="productModalOrder" href="#" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-whatsapp"></i> <span data-i18n="orderWhatsApp">WhatsApp बाट अर्डर गर्नुहोस्</span>
-            </a>
+            <div class="product-modal-gallery-pane">
+                <div class="product-modal-image" id="productModalImage"></div>
+                <div class="product-thumbnails" id="productModalThumbnails"></div>
+            </div>
+            <div class="product-modal-details">
+                <h3 id="productModalTitle"></h3>
+                <span class="product-modal-category" id="productModalCategory"></span>
+                <div class="product-modal-price"><span data-i18n="priceLabel">मूल्य:</span> <span id="productModalPrice"></span></div>
+                <div class="product-modal-section">
+                    <h4>उत्पादनको विवरण</h4>
+                    <p id="productModalDescription"></p>
+                </div>
+                <div class="product-modal-order">
+                    <a class="btn btn-whatsapp" id="productModalOrder" href="#" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-whatsapp"></i> <span data-i18n="orderWhatsApp">WhatsApp बाट अर्डर गर्नुहोस्</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1513,85 +1445,56 @@
         function openProductModal(product) {
             if (!product) return;
             const imageBox = document.getElementById('productModalImage');
+            const thumbsBox = document.getElementById('productModalThumbnails');
             const productImages = product.images || (product.image ? [product.image] : []);
             imageBox.innerHTML = '';
-            imageBox.classList.remove('product-modal-gallery');
-
-            if (productImages.length) {
-                if (productImages.length > 1) imageBox.classList.add('product-modal-gallery');
-                const img = document.createElement('img');
-                img.src = productImages[0];
-                img.alt = productName(product);
-                img.onerror = () => {
-                    img.remove();
-                    if (!imageBox.querySelector('i')) {
-                        const icon = document.createElement('i');
-                        icon.className = `fas ${product.icon}`;
-                        imageBox.appendChild(icon);
-                    }
-                };
-                img.title = 'Click to enlarge photo';
-                img.style.cursor = 'zoom-in';
-                img.addEventListener('click', (event) => {
-                    event.stopPropagation();
-                    const lightbox = document.createElement('div');
-                    lightbox.className = 'photo-lightbox';
-                    lightbox.setAttribute('role', 'dialog');
-                    lightbox.setAttribute('aria-label', 'Enlarged product photo');
-                    const largeImg = document.createElement('img');
-                    largeImg.src = img.src;
-                    largeImg.alt = img.alt;
-                    const closeBtn = document.createElement('button');
-                    closeBtn.className = 'photo-lightbox-close';
-                    closeBtn.type = 'button';
-                    closeBtn.setAttribute('aria-label', 'Close enlarged photo');
-                    closeBtn.textContent = '×';
-                    const closeLightbox = () => lightbox.remove();
-                    closeBtn.addEventListener('click', closeLightbox);
-                    lightbox.addEventListener('click', (e) => {
-                        if (e.target === lightbox) closeLightbox();
-                    });
-                    largeImg.addEventListener('click', (e) => e.stopPropagation());
-                    lightbox.append(largeImg, closeBtn);
-                    document.body.appendChild(lightbox);
-                    closeBtn.focus();
-                });
-                imageBox.appendChild(img);
-
-                if (productImages.length > 1) {
-                    let currentImage = 0;
-                    const count = document.createElement('span');
-                    count.className = 'gallery-count';
-                    count.textContent = `1 / ${productImages.length}`;
-                    const showImage = (index) => {
-                        currentImage = (index + productImages.length) % productImages.length;
-                        img.src = productImages[currentImage];
-                        count.textContent = `${currentImage + 1} / ${productImages.length}`;
-                    };
-                    const prev = document.createElement('button');
-                    prev.type = 'button';
-                    prev.className = 'gallery-nav gallery-prev';
-                    prev.setAttribute('aria-label', 'Previous photo');
-                    prev.textContent = '‹';
-                    prev.addEventListener('click', () => showImage(currentImage - 1));
-                    const next = document.createElement('button');
-                    next.type = 'button';
-                    next.className = 'gallery-nav gallery-next';
-                    next.setAttribute('aria-label', 'Next photo');
-                    next.textContent = '›';
-                    next.addEventListener('click', () => showImage(currentImage + 1));
-                    imageBox.append(prev, next, count);
+            thumbsBox.innerHTML = '';
+            let currentImage = 0;
+            const showLargePhoto = (src, alt) => {
+                const lightbox = document.createElement('div');
+                lightbox.className = 'photo-lightbox';
+                lightbox.setAttribute('role', 'dialog');
+                lightbox.setAttribute('aria-label', 'Enlarged product photo');
+                const largeImg = document.createElement('img');
+                largeImg.src = src; largeImg.alt = alt;
+                const closeBtn = document.createElement('button');
+                closeBtn.className = 'photo-lightbox-close'; closeBtn.type = 'button';
+                closeBtn.setAttribute('aria-label', 'Close enlarged photo'); closeBtn.textContent = '×';
+                const close = () => lightbox.remove();
+                closeBtn.addEventListener('click', close);
+                lightbox.addEventListener('click', e => { if (e.target === lightbox) close(); });
+                largeImg.addEventListener('click', e => e.stopPropagation());
+                lightbox.append(largeImg, closeBtn); document.body.appendChild(lightbox); closeBtn.focus();
+            };
+            const renderImage = (index) => {
+                currentImage = index;
+                imageBox.innerHTML = '';
+                if (!productImages.length) {
+                    const icon = document.createElement('i'); icon.className = `fas ${product.icon || 'fa-image'}`; imageBox.appendChild(icon); return;
                 }
-            } else {
-                const icon = document.createElement('i');
-                icon.className = `fas ${product.icon}`;
-                imageBox.appendChild(icon);
-            }
+                const img = document.createElement('img');
+                img.src = productImages[currentImage]; img.alt = productName(product);
+                img.onerror = () => { img.remove(); const icon = document.createElement('i'); icon.className = `fas ${product.icon || 'fa-image'}`; imageBox.appendChild(icon); };
+                imageBox.appendChild(img);
+                const zoom = document.createElement('button'); zoom.type = 'button'; zoom.className = 'product-zoom-btn';
+                zoom.setAttribute('aria-label', 'फोटो ठूलो हेर्नुहोस्'); zoom.innerHTML = '<i class="fas fa-magnifying-glass-plus"></i>';
+                zoom.addEventListener('click', () => showLargePhoto(img.src, img.alt)); imageBox.appendChild(zoom);
+                [...thumbsBox.children].forEach((el, i) => el.classList.toggle('active', i === currentImage));
+            };
+            if (productImages.length) {
+                productImages.forEach((src, i) => {
+                    const thumb = document.createElement('button'); thumb.type = 'button';
+                    thumb.className = 'product-thumbnail' + (i === 0 ? ' active' : '');
+                    thumb.setAttribute('aria-label', `फोटो ${i + 1} हेर्नुहोस्`);
+                    const thumbImg = document.createElement('img'); thumbImg.src = src; thumbImg.alt = `${productName(product)} ${i + 1}`;
+                    thumb.appendChild(thumbImg); thumb.addEventListener('click', () => renderImage(i)); thumbsBox.appendChild(thumb);
+                });
+                renderImage(0);
+            } else renderImage(0);
             document.getElementById('productModalTitle').textContent = productName(product);
             document.getElementById('productModalCategory').textContent = categoryName(product.category);
             document.getElementById('productModalDescription').textContent = productDesc(product);
-            document.getElementById('productModalPrice').textContent =
-                Number.isFinite(product.price) && product.price > 0 ? formatNPR(product.price) : uiText[currentLanguage].priceRequest;
+            document.getElementById('productModalPrice').textContent = Number.isFinite(product.price) && product.price > 0 ? formatNPR(product.price) : uiText[currentLanguage].priceRequest;
             document.getElementById('productModalOrder').href = whatsappOrderUrl(product);
             document.getElementById('productModal').classList.add('open');
             document.body.classList.add('cart-open');
