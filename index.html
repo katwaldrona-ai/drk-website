@@ -1,1660 +1,356 @@
+
 <!DOCTYPE html>
-<html lang="ne">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <title>DRK Tech Trading | Premium Incubators & Poultry Automation Nepal</title>
-    <meta name="description" content="DRK Tech Trading Pvt. Ltd. supplies egg incubators, incubator spare parts, electrical and electronic products, and hatchery automation solutions in Nepal. Order via WhatsApp.">
-    <link rel="canonical" href="https://drktech.com.np/">
-    <meta name="theme-color" content="#1e293b">
-    <!-- FontAwesome for Premium Visual Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-   
-
- <style>
-        :root {
-            --primary: #1e293b;
-            --accent: #f59e0b;
-            --accent-hover: #d97706;
-            --bg-light: #f8fafc;
-            --text-dark: #0f172a;
-            --text-muted: #64748b;
-            --white: #ffffff;
-            --whatsapp: #22c55e;
-            --whatsapp-hover: #16a34a;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Noto Sans Devanagari', 'Segoe UI', Tahoma, sans-serif;
-        }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        body.cart-open { overflow: hidden; }
-
-        a { color: inherit; }
-
-        section { scroll-margin-top: 80px; }
-
-        /* Navigation Bar */
-        header {
-            background: var(--primary);
-            color: var(--white);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1.5rem;
-            padding: 1rem 2rem;
-        }
-
-        .logo { text-decoration: none; }
-
-        .logo h1 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            line-height: 1.1;
-        }
-
-        .logo span {
-            color: var(--accent);
-        }
-
-        .logo small {
-            display: block;
-            font-size: 0.65rem;
-            font-weight: 500;
-            letter-spacing: 2px;
-            color: #94a3b8;
-            margin-top: 0.25rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.75rem;
-            margin-left: auto;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #e2e8f0;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover { color: var(--accent); }
-
-        .language-toggle {
-            background: rgba(255,255,255,0.12);
-            color: #fff;
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 8px;
-            padding: 0.55rem 0.8rem;
-            font-weight: 700;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-        .language-toggle:hover { background: var(--accent); color: var(--primary); }
-
-        .cart-icon-container {
-            position: relative;
-            cursor: pointer;
-            background: rgba(255,255,255,0.1);
-            color: var(--white);
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 50px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .cart-icon-container:hover {
-            background: var(--accent);
-        }
-
-        .cart-label { font-weight: 600; font-size: 0.9rem; }
-
-        .cart-count {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: #ef4444;
-            color: white;
-            border-radius: 50px;
-            min-width: 1.4rem;
-            padding: 0.2rem 0.45rem;
-            font-size: 0.75rem;
-            font-weight: bold;
-            line-height: 1;
-            text-align: center;
-        }
-
-        .cart-count.bump { animation: bump 0.35s ease; }
-
-        .snipcart-items-count {
-            display: inline-grid;
-            place-items: center;
-            min-width: 1.4rem;
-            min-height: 1.4rem;
-            padding: 0.1rem 0.35rem;
-            border-radius: 50px;
-            background: #ef4444;
-            color: #fff;
-            font-size: 0.75rem;
-            font-weight: 700;
-        }
-
-        @keyframes bump {
-            50% { transform: scale(1.35); }
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            color: var(--white);
-            padding: 5rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 520px;
-            height: 520px;
-            right: -160px;
-            top: -200px;
-            background: radial-gradient(circle, rgba(245,158,11,0.18) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .eyebrow {
-            display: inline-block;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: var(--accent);
-            border: 1px solid rgba(245,158,11,0.4);
-            padding: 0.35rem 0.9rem;
-            border-radius: 50px;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero h2 {
-            font-size: 2.8rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-
-        .hero h2 span {
-            color: var(--accent);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: #cbd5e1;
-            margin-bottom: 2rem;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.9rem 1.6rem;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: background 0.2s, transform 0.2s;
-        }
-
-        .btn:hover { transform: translateY(-2px); }
-
-        .btn-primary { background: var(--accent); color: var(--white); }
-        .btn-primary:hover { background: var(--accent-hover); }
-
-        .btn-outline { border: 1px solid rgba(255,255,255,0.3); color: var(--white); }
-        .btn-outline:hover { background: rgba(255,255,255,0.1); }
-
-        .btn-whatsapp { background: var(--whatsapp); color: var(--white); }
-        .btn-whatsapp:hover { background: var(--whatsapp-hover); }
-
-        /* Trust Strip */
-        .trust {
-            background: var(--accent);
-            color: var(--primary);
-        }
-
-        .trust-row {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            text-align: center;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        .trust-row i { margin-right: 0.4rem; }
-
-        /* Catalog Grid Section */
-        .catalog-container {
-            max-width: 1200px;
-            margin: 4rem auto;
-            padding: 0 2rem;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 0.75rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--accent);
-            margin: 0.5rem auto 0;
-            border-radius: 2px;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            max-width: 640px;
-            margin: 0 auto 2.5rem;
-        }
-
-        .filter-bar {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .product-search-wrap { max-width: 620px; margin: 0 auto 1.25rem; position: relative; }
-        .product-search-wrap input { width:100%; min-height:50px; border:1px solid #cbd5e1; border-radius:12px; padding:0 1rem 0 3rem; font:inherit; background:#fff; color:#10213d; outline:none; }
-        .product-search-wrap input:focus { border-color:var(--primary); box-shadow:0 0 0 3px rgba(23,99,198,.12); }
-        .product-search-wrap i { position:absolute; left:1rem; top:50%; transform:translateY(-50%); color:#64748b; }
-
-        .filter-btn {
-            background: var(--white);
-            border: 1px solid #e2e8f0;
-            color: var(--text-dark);
-            padding: 0.5rem 1.1rem;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .filter-btn:hover { border-color: var(--accent); }
-
-        .filter-btn.active {
-            background: var(--primary);
-            border-color: var(--primary);
-            color: var(--white);
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .product-card {
-            background: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid #e2e8f0;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .product-image {
-            height: 200px;
-            background: #f1f5f9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: var(--primary);
-            position: relative;
-        }
-
-        .product-image i { opacity: 0.85; }
-
-        .product-image { cursor: pointer; }
-        .product-image:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
-
-        /* Product details popup: two-column gallery + details */
-        .product-modal { position:fixed; inset:0; z-index:3000; display:none; align-items:center; justify-content:center; padding:2rem; background:rgba(15,23,42,.78); }
-        .product-modal.open { display:flex; }
-        .product-modal-card { position:relative; display:grid; grid-template-columns:minmax(0, 1fr) minmax(0, .95fr); gap:2rem; width:min(1380px, 96vw); max-height:92vh; overflow-y:auto; background:#fff; border-radius:24px; padding:2rem; box-shadow:0 24px 70px rgba(0,0,0,.32); }
-        .product-modal-close { position:absolute; top:1rem; right:1rem; width:44px; height:44px; border:0; border-radius:50%; background:#e2e8f0; color:#0f172a; font-size:1.7rem; cursor:pointer; z-index:5; }
-        .product-modal-gallery-pane { min-width:0; }
-        .product-modal-image { position:relative; display:grid; place-items:center; height: min(60vh, 600px); min-height:320px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:18px; overflow:hidden; color:var(--primary); font-size:4rem; }
-        .product-modal-image img { width:100%; height:100%; object-fit:contain; border-radius:16px; background:#fff; padding:10px; }
-        .product-zoom-btn { position:absolute; top:14px; right:14px; width:48px; height:48px; border:0; border-radius:50%; background:#e2e8f0; color:#0f172a; font-size:1.2rem; cursor:pointer; box-shadow:0 3px 12px #0002; z-index:2; }
-        .product-thumbnails { display:flex; gap:12px; overflow-x:auto; padding:12px 2px 4px; }
-        .product-thumbnail { flex:0 0 100px; width:100px; height:90px; padding:4px; border:2px solid #e2e8f0; border-radius:14px; background:#f8fafc; cursor:pointer; }
-        .product-thumbnail.active { border-color:#1763c6; }
-        .product-thumbnail img { width:100%; height:100%; object-fit:contain; }
-        .product-modal-details { min-width:0; padding:1.2rem 0 .3rem; display:flex; flex-direction:column; }
-        .product-modal-details h3 { font-size:clamp(1.35rem,2vw,2rem); line-height:1.3; margin:0 3rem 1rem 0; color:#10213d; }
-        .product-modal-category { display:inline-flex; align-self:flex-start; background:#1763c6; color:white; border-radius:24px; padding:.45rem 1rem; font-weight:700; margin-bottom:1rem; }
-        .product-modal-price { font-size:clamp(1.25rem,2vw,1.8rem); font-weight:800; color:#10213d; margin:.3rem 0 1.3rem; }
-        .product-modal-price span { color:#e58a00; }
-        .product-modal-section { border-top:1px solid #e2e8f0; padding-top:1.2rem; margin-top:.4rem; }
-        .product-modal-section h4 { font-size:1.2rem; color:#10213d; margin:0 0 .7rem; }
-        .product-modal-section p { color:#334155; line-height:1.8; font-size:1.05rem; margin:0; }
-        .product-share-btn { display:inline-flex; align-items:center; justify-content:center; gap:.55rem; width:100%; min-height:48px; margin-top:12px; border:1px solid #1763c6; border-radius:10px; background:#eff6ff; color:#174b8c; font-weight:700; cursor:pointer; font-size:1rem; }
-        .product-share-btn:hover { background:#dbeafe; }
-        .product-modal-order { margin-top:auto; padding-top:1.5rem; }
-        .product-modal-order .btn { width:100%; min-height:58px; justify-content:center; font-size:1.1rem; }
-        @media (max-width:760px) { .product-modal { padding:.6rem; align-items:flex-start; overflow-y:auto; } .product-modal-card { grid-template-columns:1fr; gap:.8rem; width:100%; max-height:none; min-height:0; padding:1rem; border-radius:16px; margin:auto 0; } .product-modal-image { height: min(62vw,380px); min-height:230px; } .product-modal-details { padding:.5rem 0 0; } .product-modal-details h3 { margin-right:3rem; } .product-thumbnail { flex-basis:78px; width:78px; height:72px; } .product-modal-order { padding-top:1rem; } }
-
-        .product-image img.product-photo {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            padding: 0.5rem;
-            background: #fff;
-        }
-
-        .stock-status { display:inline-flex; align-items:center; gap:.35rem; width:fit-content; margin:.45rem 0; padding:.28rem .65rem; border-radius:20px; font-size:.78rem; font-weight:700; }
-        .stock-in { color:#166534; background:#dcfce7; }
-        .stock-low { color:#92400e; background:#fef3c7; }
-        .stock-out { color:#991b1b; background:#fee2e2; }
-        .stock-unknown { color:#475569; background:#e2e8f0; }
-        .product-badge {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            background: var(--primary);
-            color: var(--white);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-
-        .product-info {
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .product-title {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .product-desc {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-
-        .product-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-            margin-top: auto;
-        }
-
-        .product-price {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--primary);
-            line-height: 1.2;
-        }
-
-        .product-price small {
-            display: block;
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: var(--text-muted);
-        }
-
-        .add-to-cart-btn {
-            background: var(--accent);
-            color: var(--white);
-            border: none;
-            padding: 0.7rem 1.2rem;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            white-space: nowrap;
-        }
-
-        .add-to-cart-btn:hover {
-            background: var(--accent-hover);
-        }
-
-        .add-to-cart-btn.added {
-            background: var(--whatsapp);
-        }
-
-        /* Why Us */
-        .why {
-            background: var(--white);
-            padding: 4rem 2rem;
-            border-top: 1px solid #e2e8f0;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .why-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .step {
-            padding: 1.75rem;
-            border-radius: 12px;
-            background: var(--bg-light);
-            border: 1px solid #e2e8f0;
-        }
-
-        .step-num {
-            display: inline-grid;
-            place-items: center;
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            background: var(--accent);
-            color: var(--white);
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .step h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
-        .step p { color: var(--text-muted); font-size: 0.92rem; }
-
-        /* Contact */
-        .contact {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            color: var(--white);
-            padding: 4.5rem 2rem;
-        }
-
-        .contact-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .contact h2 { font-size: 2.2rem; line-height: 1.2; margin-bottom: 1rem; }
-        .contact h2 span { color: var(--accent); }
-        .contact-copy p { color: #cbd5e1; margin-bottom: 1.5rem; }
-
-        .contact-card {
-            background: var(--white);
-            color: var(--text-dark);
-            border-radius: 12px;
-            padding: 2rem;
-        }
-
-        .contact-card h3 { margin-bottom: 1.25rem; }
-
-        .contact-line {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.85rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact-line i {
-            color: var(--accent);
-            width: 1.2rem;
-            margin-top: 0.3rem;
-            text-align: center;
-        }
-
-        .contact-line strong { display: block; font-size: 0.8rem; color: var(--text-muted); font-weight: 600; }
-        .contact-line a { text-decoration: none; font-weight: 600; }
-        .contact-line a:hover { color: var(--accent-hover); }
-
-        footer {
-            background: #0b1220;
-            color: #94a3b8;
-            font-size: 0.85rem;
-        }
-
-        .footer-row {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .social-links {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.9rem;
-        }
-
-        .social-links a {
-            color: #e2e8f0;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .social-links a:hover { color: #ffffff; text-decoration: underline; }
-
-        /* Shopping Sidebar Drawer */
-        .cart-sidebar {
-            position: fixed;
-            top: 0;
-            right: -400px;
-            width: 400px;
-            height: 100%;
-            background: var(--white);
-            box-shadow: -5px 0 25px rgba(0,0,0,0.15);
-            z-index: 2000;
-            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            display: flex;
-            flex-direction: column;
-            visibility: hidden;
-        }
-
-        .cart-sidebar.open {
-            right: 0;
-            visibility: visible;
-        }
-
-        .cart-header {
-            padding: 1.5rem;
-            background: var(--primary);
-            color: var(--white);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .close-cart {
-            background: none;
-            border: none;
-            color: var(--white);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .cart-items-container {
-            padding: 1.5rem;
-            flex-grow: 1;
-            overflow-y: auto;
-        }
-
-        .empty-cart-msg {
-            text-align: center;
-            color: var(--text-muted);
-            margin-top: 3rem;
-        }
-
-        .empty-cart-msg i {
-            font-size: 3rem;
-            display: block;
-            margin-bottom: 1rem;
-            color: #cbd5e1;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-            padding-bottom: 1rem;
-            margin-bottom: 1rem;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .cart-item-details h4 {
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .cart-item-details p {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-
-        .cart-item-actions {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .qty-control {
-            display: flex;
-            align-items: center;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .qty-control button {
-            background: var(--bg-light);
-            border: none;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            color: var(--text-dark);
-        }
-
-        .qty-control button:hover { background: #e2e8f0; }
-
-        .qty-control span {
-            min-width: 32px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .remove-item-btn {
-            background: none;
-            border: none;
-            color: #ef4444;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .cart-footer {
-            padding: 1.5rem;
-            border-top: 1px solid #e2e8f0;
-            background: #f8fafc;
-        }
-
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .cart-note {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 1.25rem;
-        }
-
-        .checkout-btn {
-            width: 100%;
-            background: var(--whatsapp);
-            color: var(--white);
-            border: none;
-            padding: 1rem;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0.5rem;
-            transition: background 0.2s;
-        }
-
-        .checkout-btn:hover {
-            background: var(--whatsapp-hover);
-        }
-
-        .checkout-btn:disabled {
-            background: #cbd5e1;
-            cursor: not-allowed;
-        }
-
-        .clear-cart-btn {
-            width: 100%;
-            margin-top: 0.75rem;
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            cursor: pointer;
-            text-decoration: underline;
-        }
-
-        .cart-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1500;
-            display: none;
-        }
-
-        .cart-overlay.show {
-            display: block;
-        }
-
-        /* Floating WhatsApp button */
-        .wa-float {
-            position: fixed;
-            right: 1.25rem;
-            bottom: 1.25rem;
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: var(--whatsapp);
-            color: var(--white);
-            display: grid;
-            place-items: center;
-            font-size: 1.8rem;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            z-index: 900;
-            text-decoration: none;
-            transition: transform 0.2s;
-        }
-
-        .wa-float:hover { transform: scale(1.08); }
-
-        @media (max-width: 850px) {
-            .nav-links { display: none; }
-            .steps { grid-template-columns: 1fr; }
-            .contact-inner { grid-template-columns: 1fr; }
-        }
-
-        @media (max-width: 600px) {
-            .nav-container { padding: 1rem 1.25rem; }
-            .cart-label { display: none; }
-            .hero { padding: 3.5rem 1.25rem; }
-            .hero h2 { font-size: 2rem; }
-            .hero p { font-size: 1.05rem; }
-            .trust-row { grid-template-columns: 1fr; gap: 0.3rem; }
-            .catalog-container { padding: 0 1.25rem; }
-        }
-
-        @media (max-width: 450px) {
-            .cart-sidebar {
-                width: 100%;
-                right: -100%;
-            }
-        }
-        #productModalDescription {
-            color: #334155;
-            font-size: 16px;
-            line-height: 1.7;
-            margin: 10px 0 14px;
-            white-space: normal;
-            overflow-wrap: anywhere;
-        }
-
-
-        .photo-lightbox {
-            position: fixed;
-            inset: 0;
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-            background: rgba(2, 6, 23, .92);
-            cursor: zoom-out;
-        }
-        .photo-lightbox img {
-            display: block;
-            max-width: 96vw;
-            max-height: 92vh;
-            width: auto;
-            height: auto;
-            object-fit: contain;
-            background: #fff;
-            border-radius: 8px;
-            cursor: default;
-        }
-        .photo-lightbox-close {
-            position: absolute;
-            top: 16px;
-            right: 20px;
-            width: 44px;
-            height: 44px;
-            border: 0;
-            border-radius: 50%;
-            background: #fff;
-            color: #111827;
-            font-size: 30px;
-            cursor: pointer;
-        }
-    </style>
-    <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"Organization","name":"DRK Tech Trading Pvt. Ltd.","url":"https://drktech.com.np/","email":"drktechtrading@gmail.com","telephone":"+977-9865210287","address":{"@type":"PostalAddress","addressLocality":"Hetauda","addressRegion":"Makwanpur","addressCountry":"NP"},"description":"Egg incubators, incubator spare parts, electrical and electronic products, and poultry automation solutions in Nepal.","areaServed":{"@type":"Country","name":"Nepal"}}
-    </script>
-</head>
-<body>
-    <!-- Gray background shade overlay when cart is displayed -->
-    <div class="cart-overlay" id="cartOverlay"></div>
-
-    <!-- Website Header -->
-    <header>
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <h1>DRK <span>Tech</span></h1>
-                <small>TRADING PVT. LTD.</small>
-            </a>
-            <nav class="nav-links">
-                <a href="#products" data-i18n="navProducts">उत्पादन</a>
-                <a href="#how" data-i18n="navHow">अर्डर गर्ने तरिका</a>
-                <a href="#contact" data-i18n="navContact">सम्पर्क</a>
-            </nav>
-            <button class="language-toggle" id="languageToggle" type="button">English</button>
-            <button class="cart-icon-container" id="cartIconBtn" aria-label="Open order list">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="cart-label" data-i18n="myOrder">मेरो अर्डर</span>
-                <span class="cart-count" id="cartCount">0</span>
-            </button>
-        </div>
-    </header>
-
-    <main>
-    <!-- Main Branding Showcase -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="eyebrow" data-i18n="eyebrow">इन्क्युबेटर • विद्युतीय • अटोमेसन</div>
-            <h2><span data-i18n="heroTitle">आधुनिक पोल्ट्री उत्पादन, भरपर्दो समाधान</span></h2>
-            <p data-i18n="heroDesc">नेपालभरका पोल्ट्री फार्म तथा ह्याचरीका लागि अण्डा इन्क्युबेटर, भरपर्दो स्पेयर पार्ट्स र विद्युतीय तथा अटोमेसन सामग्री।</p>
-            <div class="hero-actions">
-                <a href="#products" class="btn btn-primary"><i class="fas fa-store"></i> <span data-i18n="browse">उत्पादन हेर्नुहोस्</span></a>
-                <a href="https://wa.me/9779865210287?text=Namaste%2C%20I%20want%20to%20know%20about%20your%20egg%20incubators." target="_blank" rel="noopener" class="btn btn-outline"><i class="fab fa-whatsapp"></i> <span data-i18n="chatWhatsApp">WhatsApp मा कुरा गर्नुहोस्</span></a>
-            </div>
-        </div>
-    </section>
-
-    <div class="trust">
-        <div class="trust-row">
-            <div><i class="fas fa-circle-check"></i><span data-i18n="trust1">गुणस्तरमा ध्यान दिइएका सामग्री</span></div>
-            <div><i class="fas fa-circle-check"></i><span data-i18n="trust2">किफायती र व्यवहारिक समाधान</span></div>
-            <div><i class="fas fa-circle-check"></i><span data-i18n="trust3">ह्याचरीका लागि प्राविधिक सहयोग</span></div>
-        </div>
-    </div>
-
-    <!-- Product Catalog -->
-    <section class="catalog-container" id="products">
-        <h2 class="section-title" data-i18n="productsTitle">उत्पादन तथा समाधान</h2>
-        <p class="section-subtitle" data-i18n="productsDesc">आवश्यक सामग्री अर्डर सूचीमा राखेर WhatsApp मार्फत पठाउनुहोस्। हामी मूल्य, उपलब्धता र विवरण जानकारी गराउनेछौँ।</p>
-
-        <div class="product-search-wrap">
-            <i class="fas fa-search" aria-hidden="true"></i>
-            <input id="productSearch" type="search" placeholder="उत्पादनको नाम वा Model Number खोज्नुहोस्..." aria-label="Search products">
-        </div>
-        <div class="filter-bar" id="filterBar">
-            <button class="filter-btn active" data-filter="all" data-i18n="filterAll">सबै</button>
-            <button class="filter-btn" data-filter="Incubators" data-i18n="filterIncubators">इन्क्युबेटर</button>
-            <button class="filter-btn" data-filter="Spare Parts" data-i18n="filterSpare">स्पेयर पार्ट्स</button>
-            <button class="filter-btn" data-filter="Electrical" data-i18n="filterElectrical">विद्युतीय</button>
-            <button class="filter-btn" data-filter="Automation" data-i18n="filterAutomation">अटोमेसन</button>
-			<button class="filter-btn" data-filter="Poultry" data-i18n="filterPoultry">पोल्ट्री</button>
-        </div>
-
-        <div class="products-grid" id="productsGrid"></div>
-    </section>
-
-    <!-- How to Order -->
-    <section class="why" id="how">
-        <div class="why-inner">
-            <h2 class="section-title" data-i18n="howTitle">अर्डर गर्ने तरिका</h2>
-            <p class="section-subtitle" data-i18n="howDesc">सजिलो अर्डर प्रक्रिया — अनलाइन भुक्तानी आवश्यक छैन।</p>
-            <div class="steps">
-                <div class="step">
-                    <span class="step-num">01</span>
-                    <h3 data-i18n="step1Title">आफ्नो अर्डर सूची बनाउनुहोस्</h3>
-                    <p data-i18n="step1Desc">इन्क्युबेटर, स्पेयर पार्ट्स वा विद्युतीय सामग्री छानेर आवश्यक संख्या राख्नुहोस्।</p>
-                </div>
-                <div class="step">
-                    <span class="step-num">02</span>
-                    <h3 data-i18n="step2Title">WhatsApp मा पठाउनुहोस्</h3>
-                    <p data-i18n="step2Desc">WhatsApp बाट अर्डर पठाउनुहोस्। तपाईंको सूची तयार सन्देशका रूपमा हाम्रो टोलीमा पुग्नेछ।</p>
-                </div>
-                <div class="step">
-                    <span class="step-num">03</span>
-                    <h3 data-i18n="step3Title">मूल्य बुझेर निश्चित गर्नुहोस्</h3>
-                    <p data-i18n="step3Desc">भुक्तानीअघि मूल्य, उपलब्धता, मिल्दोपन र डेलिभरी निश्चित गरिन्छ।</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="contact" id="contact">
-        <div class="contact-inner">
-            <div class="contact-copy">
-                <h2 data-i18n="contactTitle">इन्क्युबेटर वा स्पेयर पार्ट्स चाहिन्छ?</h2>
-                <p data-i18n="contactDesc">उपलब्धता, मूल्य, विवरण वा आफूअनुसारको इन्क्युबेटरका लागि DRK Tech Trading Pvt. Ltd. मा सम्पर्क गर्नुहोस्।</p>
-                <a href="https://wa.me/9779865210287?text=Namaste%2C%20I%20want%20to%20know%20about%20your%20egg%20incubators." target="_blank" rel="noopener" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> <span data-i18n="chatUs">WhatsApp मा सम्पर्क गर्नुहोस्</span></a>
-            </div>
-            <div class="contact-card">
-                <h3>DRK Tech Trading Pvt. Ltd.</h3>
-                <div class="contact-line">
-                    <i class="fab fa-whatsapp"></i>
-                    <div><strong data-i18n="phoneLabel">फोन / WhatsApp</strong><a href="https://wa.me/9779865210287" target="_blank" rel="noopener">9865210287</a></div>
-                </div>
-                <div class="contact-line">
-                    <i class="fas fa-envelope"></i>
-                    <div><strong>Email</strong><a href="mailto:drktechtrading@gmail.com">drktechtrading@gmail.com</a></div>
-                </div>
-                <div class="contact-line">
-                    <i class="fas fa-location-dot"></i>
-                    <div><strong data-i18n="locationLabel">ठेगाना</strong>Hetauda, Makwanpur, Nepal</div>
-                </div>
-                <div class="contact-line">
-                    <i class="fas fa-globe"></i>
-                    <div><strong data-i18n="websiteLabel">वेबसाइट</strong>drktech.com.np</div>
-                </div>
-            </div>
-        </div>
-    </section>
-    </main>
-
-    <footer>
-        <div class="footer-row">
-            <div>© 2026 DRK Tech Trading Pvt. Ltd. All rights reserved.</div>
-            <div data-i18n="footerProducts">अण्डा इन्क्युबेटर • स्पेयर पार्ट्स • विद्युतीय • अटोमेसन</div>
-            <nav class="social-links" aria-label="DRK social media links">
-                <a href="https://www.youtube.com/@drktech9567" target="_blank" rel="noopener noreferrer" aria-label="DRK Tech on YouTube"><i class="fab fa-youtube" aria-hidden="true"></i> YouTube</a>
-                <a href="https://www.tiktok.com/@drktechhetauda?_r=1&_t=ZS-9Ahmlsv3hOJ" target="_blank" rel="noopener noreferrer" aria-label="DRK Tech on TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i> TikTok</a>
-                <a href="https://www.facebook.com/share/1CmKLLcs7k/" target="_blank" rel="noopener noreferrer" aria-label="DRK Tech Facebook page 1"><i class="fab fa-facebook" aria-hidden="true"></i> Facebook</a>
-                <a href="https://www.facebook.com/share/1EKvUgHyzb/" target="_blank" rel="noopener noreferrer" aria-label="DRK Tech Facebook page 2"><i class="fab fa-facebook" aria-hidden="true"></i> Facebook 2</a>
-            </nav>
-        </div>
-    </footer>
-
-    <a class="wa-float" href="https://wa.me/9779865210287" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
-
-    <!-- Shopping Sidebar Drawer -->
-    <aside class="cart-sidebar" id="cartSidebar" aria-label="Order list">
-        <div class="cart-header">
-            <h3><i class="fas fa-clipboard-list"></i> <span data-i18n="orderList">मेरो अर्डर सूची</span></h3>
-            <button class="close-cart" id="closeCartBtn" aria-label="Close"><i class="fas fa-xmark"></i></button>
-        </div>
-        <div class="cart-items-container" id="cartItems"></div>
-        <div class="cart-footer">
-            <div class="cart-total"><span data-i18n="totalItems">जम्मा सामग्री</span><span id="cartTotal">0</span></div>
-            <p class="cart-note" data-i18n="cartNote">मोडेल, संख्या र डेलिभरी स्थानअनुसार मूल्य WhatsApp मा निश्चित गरिनेछ।</p>
-            <button class="checkout-btn" id="checkoutBtn"><i class="fab fa-whatsapp"></i> <span data-i18n="sendOrder">WhatsApp बाट अर्डर पठाउनुहोस्</span></button>
-            <button class="clear-cart-btn" id="clearCartBtn" data-i18n="clearList">सूची खाली गर्नुहोस्</button>
-        </div>
-    </aside>
-
-
-    <!-- Product details popup: required by the JavaScript below -->
-    <div class="product-modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="productModalTitle">
-        <div class="product-modal-card">
-            <button class="product-modal-close" id="closeProductModal" type="button" aria-label="Close product details">&times;</button>
-            <div class="product-modal-gallery-pane">
-                <div class="product-modal-image" id="productModalImage"></div>
-                <div class="product-thumbnails" id="productModalThumbnails"></div>
-            </div>
-            <div class="product-modal-details">
-                <h3 id="productModalTitle"></h3>
-                <span class="product-modal-category" id="productModalCategory"></span>
-                <div class="product-modal-price"><span data-i18n="priceLabel">मूल्य:</span> <span id="productModalPrice"></span></div>
-                <span id="productModalStock" class="stock-status stock-unknown"></span>
-                <div class="product-modal-section">
-                    <h4>उत्पादनको विवरण</h4>
-                    <p id="productModalDescription"></p>
-                </div>
-                <div class="product-modal-order">
-                    <a class="btn btn-whatsapp" id="productModalOrder" href="#" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-whatsapp"></i> <span data-i18n="orderWhatsApp">WhatsApp बाट अर्डर गर्नुहोस्</span>
-                    </a>
-                    <button class="product-share-btn" id="shareProductBtn" type="button"><i class="fas fa-share-alt"></i> <span data-i18n="shareProduct">उत्पादन शेयर गर्नुहोस्</span></button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const WHATSAPP_NUMBER = '9779865210287';
-        const STORAGE_KEY = 'drk-cart';
-
-        // Set a number (NPR) on `price` to show it on the site; null shows "Price on request".
-        const PRODUCTS = [
-            { id: 'auto-incubator', name: 'Automatic Egg Incubator', category: 'Incubators', icon: 'fa-egg', badge: 'Best Seller', price: null,
-              desc: 'Fully automatic incubator with digital temperature & humidity control and automatic egg turning. Available in multiple capacities.' },
-            { id: 'mini-incubator', name: 'Mini / Small-Farm Incubator', category: 'Incubators', icon: 'fa-kiwi-bird', badge: 'Starter', price: null,
-              desc: 'Compact incubator for small farms and beginners. Easy to operate with reliable temperature control.' },
-            { id: 'custom-incubator', name: 'Custom Hatchery Incubator', category: 'Incubators', icon: 'fa-warehouse', badge: 'Made to Order', price: null,
-              desc: 'Large-capacity setter and hatcher units built to your hatchery requirements.' },
-            { id: 'controller', name: 'Digital Temperature & Humidity Controller', category: 'Spare Parts', icon: 'fa-temperature-half', badge: 'Spare Part', price: null,
-              desc: 'Replacement controller for incubators with sensor input, alarms, and precise setpoint control.' },
-            { id: 'controller-w1209', name: 'W1209 Temperature Controller', category: 'Spare Parts', icon: 'fa-temperature-half', badge: 'Spare Part', images: ['w1209front.jpeg', 'w1209.jpeg'], price: 500,
-              desc: 'Digital temperature controller for incubator applications.' },
-            { id: 'controller-xh3001', name: 'XH-W3001 Temperature Controller', category: 'Spare Parts', icon: 'fa-temperature-half', badge: 'Spare Part', images: ['XH-3001.png', 'XH-3001back.jpg'], price: 600,
-              desc: 'Digital temperature controller for incubator applications.' },
-            { id: 'controller-xh3002', name: 'XH-W3002 Temperature Controller', category: 'Spare Parts', icon: 'fa-temperature-half', badge: 'Spare Part', image: 'XH-3002.jpg', price: 700,
-              desc: 'Digital temperature controller for incubator temperature control.' },
-            { id: '6-watt-turning-motor', name: '6watt Egg Turning Motor', category: 'Spare Parts', icon: 'fa-rotate', badge: 'Spare Part', image: 'turning motor 6 watt.jpeg', price: 1200,
-              desc: 'Low-speed turning motor for automatic egg tray rotation in incubators.' },
- 	{ id: '14-watt-turning-motor', name: '14watt Egg Turning Motor', category: 'Spare Parts', icon: 'fa-rotate', badge: 'Spare Part', image: 'turning motor 14 watt.jpg', price: 1800,
-              desc: 'Low-speed turning motor for automatic egg tray rotation in incubators.' },
- 		{ id: 'digital-timer', name: 'Digital Timer Control', category: 'Spare Parts', icon: 'fa-clock', badge: 'Spare Part', image: 'digital timer.jpg', price: 1200,
-              desc: 'Digital timer control for incubator operation.' },
-	{ id: 'mechanical-timer', name: 'Mechanical Timer Control', category: 'Spare Parts', icon: 'fa-clock', badge: 'Spare Part', image: 'mechnical timer.jpg', price: 1800,
-              desc: 'Mechanical timer control for incubator operation.' },
-	 { id: 'fan-8-inch', name: '8-inch Circulation Fan', category: 'Spare Parts', icon: 'fa-fan', badge: 'Spare Part', image: '8inch axial fan.jpg', price: 3000,
-              desc: 'Air circulation and ventilation fans for even temperature inside the incubator.' },
- 	{ id: 'fan-black-axial', name: 'Black Axial Circulation Fan', category: 'Spare Parts', icon: 'fa-fan', badge: 'Spare Part', image: 'black axial fan.jpg', price: 6000,
-              desc: 'Air circulation and ventilation fans for even temperature inside the incubator.' },
-
-            {
-              id: 'spare-heater-coil',
-              name: 'Ring heater ',
-              category: 'Spare Parts',
-              icon: 'fa-fire',
-              badge: 'Spare Part',
-              price: null,
-              image: 'spare-heater-coil.jpg',
-              desc: 'Circular heating element for incubator and heating applications. Contact us to confirm size, voltage and wattage.'
-            },
-            {
-              id: 'spare-u-heater',
-              name: 'u type heater',
-              category: 'Spare Parts',
-              icon: 'fa-fire',
-              badge: 'Spare Part',
-              price: null,
-              image: 'u heater 300-500watt.jpg',
-              desc: 'U-shaped tubular heating element. Please confirm dimensions, voltage and wattage before ordering.'
-            },
-            {
-              id: 'spare-stc1000',
-              name: 'Normal STC-1000 Temperature Controller',
-              category: 'Spare Parts',
-              icon: 'fa-temperature-half',
-              badge: 'Spare Part',
-              price: null,
-              image: 'Normal stc-1000.png',
-              desc: 'Digital temperature controller for heating and cooling applications. Check the model and voltage before purchase.'
-            },
-            {
-              id: 'spare-stc-controller',
-              name: 'orginial STC-1000 Temperature Controller',
-              category: 'Spare Parts',
-              icon: 'fa-temperature-half',
-              badge: 'Spare Part',
-              price: null,
-              image: 'orginial stc-1000.jpg',
-              desc: 'Digital temperature controller with display and sensor cable. Confirm model compatibility before ordering.'
-            },
-            {
-              id: 'spare-humidity-Heater',
-              name: 'M452 Temperature and Humidity Controller',
-              category: 'Spare Parts',
-              icon: 'fa-gauge-high',
-              badge: 'Spare Part',
-              price: null,
-              image: 'Temperature and humidity controller M452.jpg',
-              desc: 'Temperature and humidity control module with sensor and relay outputs. Specifications depend on the model.'
-            },
-            {
-              id: 'spare-heating-rods',
-              name: 'Humidity rod',
-              category: 'Spare Parts',
-              icon: 'fa-fire',
-              badge: 'Spare Part',
-              price: null,
-              image: '300 -500 watt humidity rod.jpg',
-              desc: 'Tubular heating rods for compatible equipment. Confirm length, wattage and voltage before ordering.'
-            },
-            {
-              id: 'xm-18 spare-incubator-controller',
-              name: 'Xm-18 Incubator Controller',
-              category: 'Spare Parts',
-              icon: 'fa-sliders',
-              badge: 'Spare Part',
-              price: null,
-              image: 'xm-18 incubator controller.jpg',
-              desc: 'Automatic incubator controller for managing incubation settings. Please confirm model compatibility.'
-            },
-            {
-              id: 'spare-xm18-controller',
-              name: 'XM-18SW Incubator Controller',
-              category: 'Spare Parts',
-              icon: 'fa-sliders',
-              badge: 'Spare Part',
-              price: null,
-              image: 'XM-18SW incubator controller.jpg',
-              desc: 'Digital incubator controller. Confirm the exact model, wiring and supported functions before ordering.'
-            },
-            {
-              id: 'spare-incubator-control-unit',
-              name: 'Xm-18D incubator controller',
-              category: 'Spare Parts',
-              icon: 'fa-microchip',
-              badge: 'Spare Part',
-              price: null,
-              image: 'xm-18d incubator controller.jpg',
-              desc: 'Incubator control unit with sensor accessories. Please contact DRK to verify specifications and compatibility.'
-            },
-
- { id: 'egg-tray', name: 'Egg Trays', category: 'Spare Parts', icon: 'fa-table-cells', badge: 'Accessory', price: null,
-              desc: 'Setter and hatcher trays for chicken, duck, and other poultry eggs.' },
-            { id: 'electrical', name: 'Electrical & Electronic Components', category: 'Electrical', icon: 'fa-bolt', badge: 'Electrical', price: null,
-              desc: 'Relays, contactors, switches, power supplies, wiring, and components for equipment maintenance.' },
-            { id: 'automation', name: 'Poultry Automation & Control Panel', category: 'Automation', icon: 'fa-sliders', badge: 'Automation', price: null,
-  desc: 'Control solutions for temperature, humidity, ventilation, and lighting in poultry sheds and hatcheries.' },
-
-{
-  id: 'nipple-cup-drinker',
-  name: 'Nipple Cup Drinker',
-  category: 'Poultry',
-  icon: 'fa-droplet',
-  badge: 'Poultry',
-  price: 100,
-  desc: 'Automatic nipple cup drinking system for poultry farms. Helps provide clean drinking water to poultry.'
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="DRK Tech Trading product stock status manager">
+<title>DRK Tech Trading | Stock Status</title>
+
+<style>
+:root {
+  font-family: Arial, sans-serif;
+  color: #172033;
+  background: #f4f6fa;
 }
+* { box-sizing: border-box; }
+body { margin: 0; padding: 24px; }
+.wrap { max-width: 1000px; margin: auto; }
+header, .panel {
+  background: white;
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 4px 18px #17203312;
+}
+header { margin-bottom: 18px; }
+h1 { margin: 0 0 8px; font-size: 25px; }
+p { color: #596579; line-height: 1.5; }
+.notice {
+  border-left: 4px solid #d69b19;
+  background: #fff8e8;
+  padding: 12px 14px;
+  border-radius: 8px;
+  margin-top: 16px;
+  color: #684b0c;
+}
+.toolbar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+input, button {
+  font: inherit;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+input {
+  border: 1px solid #cbd3df;
+  min-width: 190px;
+}
+button {
+  border: 0;
+  background: #1457c5;
+  color: white;
+  cursor: pointer;
+}
+button.secondary {
+  background: #e8edf5;
+  color: #172033;
+}
+.table-wrap { overflow-x: auto; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+th, td {
+  text-align: left;
+  padding: 13px 10px;
+  border-bottom: 1px solid #e8ecf2;
+}
+th { color: #596579; font-size: 13px; }
+td input { width: 100px; min-width: 80px; }
+.status {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.in { background: #e3f7eb; color: #176b39; }
+.limited { background: #fff1d6; color: #895900; }
+.out { background: #fde7e7; color: #a12626; }
+.unknown { background: #edf0f5; color: #596579; }
+footer {
+  text-align: center;
+  color: #788397;
+  font-size: 12px;
+  padding: 18px;
+}
+@media(max-width:600px) {
+  body { padding: 12px; }
+  header, .panel { padding: 16px; }
+  h1 { font-size: 21px; }
+}
+</style>
+</head>
+
+<body>
+<main class="wrap">
+
+<header>
+  <h1>DRK Tech Trading — Stock Status</h1>
+  <p>Update product quantities and see the stock label automatically.</p>
+
+  <div class="notice">
+    <strong>महत्त्वपूर्ण:</strong>
+    यो संस्करणले Stock यसै ब्राउजरको Local Storage मा मात्र राख्छ।
+    अर्को मोबाइल वा कम्प्युटरमा आफैँ अपडेट हुँदैन।
+    यो सुरक्षित Admin Login होइन। सबै ग्राहकलाई एउटै Stock देखाउन
+    पछि Supabase जडान गर्नुपर्छ।
+  </div>
+</header>
+
+<section class="panel">
+
+  <div class="toolbar">
+    <input id="search" type="search"
+      placeholder="Search product..."
+      aria-label="Search products">
+
+    <button id="exportBtn" type="button">
+      Export stock JSON
+    </button>
+
+    <button id="resetBtn" class="secondary" type="button">
+      Reset saved quantities
+    </button>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="productRows"></tbody>
+    </table>
+  </div>
+
+</section>
+
+<footer>
+  DRK Tech Trading Pvt. Ltd. · Stock status helper
+</footer>
+
+</main>
+
+<script>
+
+// Product ID हरू आफ्नो वेबसाइटको PRODUCTS ID सँग मिलाउनुहोस्।
+const PRODUCTS = [
+  { id: 'auto-incubator', name: 'Automatic Egg Incubator' },
+  { id: 'mini-incubator', name: 'Mini / Small-Farm Incubator' },
+  { id: 'custom-incubator', name: 'Custom Hatchery Incubator' },
+  { id: 'controller-xh3001', name: 'XH-W3001 Temperature Controller' },
+  { id: 'controller-xh3002', name: 'XH-W3002 Temperature Controller' },
+  { id: 'controller-w1209', name: 'W1209 Temperature Controller' },
+  { id: 'stc-1000', name: 'STC-1000 Temperature Controller' },
+  { id: 'xm-18-controller', name: 'XM-18 Incubator Controller' },
+  { id: 'xm-18sw-controller', name: 'XM-18SW Incubator Controller' },
+  { id: 'm452-controller', name: 'M452 Temperature & Humidity Controller' },
+  { id: 'heater-coil', name: 'Spare Heater Coil' },
+  { id: 'u-heater', name: 'U Heater 300–500W' },
+  { id: 'humidity-rod', name: 'Humidity Rod 300–500W' }
 ];
 
-        // Update quantities here when stock changes. Unknown products show 'Availability on request'.
-        // Example: 'controller-xh3001': 12, 'controller-xh3002': 0
-        const STOCK_QUANTITIES = {
-            // Example entries: 'controller-xh3001': 12, 'controller-xh3002': 0
-            // Enter your real quantities here.
-        };
+const STORAGE_KEY = 'drk-stock-quantities-v1';
 
-        function stockInfo(product) {
-            const qty = STOCK_QUANTITIES[product.id];
-            if (!Number.isFinite(qty)) return { label: currentLanguage === 'ne' ? 'उपलब्धता सोध्नुहोस्' : 'Check availability', className: 'stock-unknown', qty: null };
-            if (qty <= 0) return { label: currentLanguage === 'ne' ? 'स्टक सकिएको' : 'Out of Stock', className: 'stock-out', qty };
-            if (qty <= 5) return { label: currentLanguage === 'ne' ? `थोरै मात्र बाँकी (${qty})` : `Limited Stock (${qty})`, className: 'stock-low', qty };
-            return { label: currentLanguage === 'ne' ? `स्टकमा उपलब्ध (${qty})` : `In Stock (${qty})`, className: 'stock-in', qty };
+let quantities = loadQuantities();
+
+function loadQuantities() {
+  try {
+    const saved = JSON.parse(
+      localStorage.getItem(STORAGE_KEY) || '{}'
+    );
+
+    return saved && typeof saved === 'object'
+      && !Array.isArray(saved) ? saved : {};
+
+  } catch (error) {
+    return {};
+  }
+}
+
+function getStatus(value) {
+
+  if (value === undefined || value === null || value === '') {
+    return {
+      label: 'Check availability',
+      css: 'unknown'
+    };
+  }
+
+  const qty = Number(value);
+
+  if (!Number.isInteger(qty) || qty < 0) {
+    return {
+      label: 'Invalid quantity',
+      css: 'unknown'
+    };
+  }
+
+  if (qty === 0) {
+    return {
+      label: 'Out of Stock',
+      css: 'out'
+    };
+  }
+
+  if (qty <= 5) {
+    return {
+      label: 'Limited Stock',
+      css: 'limited'
+    };
+  }
+
+  return {
+    label: 'In Stock',
+    css: 'in'
+  };
+}
+
+function saveQuantities() {
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(quantities)
+  );
+}
+
+function render() {
+
+  const term = document.getElementById('search')
+    .value.trim().toLowerCase();
+
+  const rows = document.getElementById('productRows');
+
+  rows.replaceChildren();
+
+  PRODUCTS
+    .filter(product =>
+      product.name.toLowerCase().includes(term) ||
+      product.id.toLowerCase().includes(term)
+    )
+    .forEach(product => {
+
+      const tr = document.createElement('tr');
+
+      const name = document.createElement('td');
+      name.textContent = product.name;
+
+      const qtyCell = document.createElement('td');
+
+      const qtyInput = document.createElement('input');
+      qtyInput.type = 'number';
+      qtyInput.min = '0';
+      qtyInput.step = '1';
+      qtyInput.inputMode = 'numeric';
+      qtyInput.placeholder = 'Unknown';
+      qtyInput.value = quantities[product.id] ?? '';
+
+      qtyInput.setAttribute(
+        'aria-label',
+        product.name + ' quantity'
+      );
+
+      qtyCell.appendChild(qtyInput);
+
+      const statusCell = document.createElement('td');
+
+      const status = getStatus(quantities[product.id]);
+
+      const pill = document.createElement('span');
+      pill.className = 'status ' + status.css;
+      pill.textContent = status.label;
+
+      statusCell.appendChild(pill);
+
+      const actionCell = document.createElement('td');
+
+      const save = document.createElement('button');
+      save.type = 'button';
+      save.textContent = 'Save';
+
+      save.addEventListener('click', () => {
+
+        const raw = qtyInput.value.trim();
+
+        if (raw === '') {
+          delete quantities[product.id];
+        } else {
+
+          const n = Number(raw);
+
+          if (!Number.isInteger(n) || n < 0) {
+            alert('Quantity 0 वा सोभन्दा ठूलो पूर्ण संख्या हुनुपर्छ।');
+            return;
+          }
+
+          quantities[product.id] = n;
         }
 
+        saveQuantities();
+        render();
+      });
 
-        let currentLanguage = 'ne';
-        const uiText = {
-            en: {
-                navProducts:'Products', navHow:'How to Order', navContact:'Contact', myOrder:'My Order',
-                eyebrow:'Incubation • Electrical • Automation', heroTitle:'Smarter Poultry Production, Built to Last',
-                heroDesc:'Egg incubators, dependable spare parts, and electrical & automation products for poultry farms and hatchery businesses across Nepal.',
-                browse:'Browse Products', chatWhatsApp:'Chat on WhatsApp', trust1:'Quality-focused products',
-                trust2:'Affordable, practical solutions', trust3:'Technical support for hatcheries',
-                productsTitle:'Products & Solutions', productsDesc:"Add the items you need to your order list, then send it to us on WhatsApp. We'll reply with prices, availability, and specifications.",
-                filterAll:'All', filterIncubators:'Incubators', filterSpare:'Spare Parts', filterElectrical:'Electrical', filterAutomation:'Automation', filterPoultry:'Poultry',
-                howTitle:'How to Order', howDesc:'Simple, personal ordering — no online payment needed.',
-                step1Title:'Build your order list', step1Desc:'Add incubators, spare parts, or electrical products and set the quantity you need.',
-                step2Title:'Send it on WhatsApp', step2Desc:'Tap "Send Order via WhatsApp" — your list is sent to our team as a ready-made message.',
-                step3Title:'Get price & confirm', step3Desc:'We confirm prices, availability, compatibility, and delivery before you pay.',
-                contactTitle:'Need an incubator or spare part?', contactDesc:'Contact DRK Tech Trading Pvt. Ltd. for product availability, prices, specifications, and custom incubator requirements. We serve customers across Nepal.',
-                chatUs:'Chat with us on WhatsApp', phoneLabel:'Phone / WhatsApp', locationLabel:'Location', websiteLabel:'Website',
-                footerProducts:'Egg Incubators • Spare Parts • Electrical • Automation', orderList:'My Order List', totalItems:'Total items',
-                cartNote:'Prices are confirmed on WhatsApp based on model, quantity, and delivery location.',
-                sendOrder:'Send Order via WhatsApp', clearList:'Clear list', categoryLabel:'Category:', priceLabel:'Price:', orderWhatsApp:'Order via WhatsApp',
-                shareProduct:'Share Product', priceRequest:'Price on request', addQuote:'Add to Quote', added:'Added', emptyCart:'Your order list is empty.', emptyCartHint:'Add products to request a quote.',
-                each:'each', close:'Close', viewDetails:'View details for', previousPhoto:'Previous photo', nextPhoto:'Next photo'
-            },
-            ne: {
-                navProducts:'उत्पादन', navHow:'अर्डर गर्ने तरिका', navContact:'सम्पर्क', myOrder:'मेरो अर्डर',
-                eyebrow:'इन्क्युबेटर • विद्युतीय • अटोमेसन', heroTitle:'आधुनिक पोल्ट्री उत्पादन, भरपर्दो समाधान',
-                heroDesc:'नेपालभरका पोल्ट्री फार्म तथा ह्याचरीका लागि अण्डा इन्क्युबेटर, भरपर्दो स्पेयर पार्ट्स र विद्युतीय तथा अटोमेसन सामग्री।',
-                browse:'उत्पादन हेर्नुहोस्', chatWhatsApp:'WhatsApp मा कुरा गर्नुहोस्', trust1:'गुणस्तरमा ध्यान दिइएका सामग्री',
-                trust2:'किफायती र व्यवहारिक समाधान', trust3:'ह्याचरीका लागि प्राविधिक सहयोग',
-                productsTitle:'उत्पादन तथा समाधान', productsDesc:'आवश्यक सामग्री अर्डर सूचीमा राखेर WhatsApp मार्फत पठाउनुहोस्। हामी मूल्य, उपलब्धता र विवरण जानकारी गराउनेछौँ।',
-                filterAll:'सबै', filterIncubators:'इन्क्युबेटर', filterSpare:'स्पेयर पार्ट्स', filterElectrical:'विद्युतीय', filterAutomation:'अटोमेसन', filterPoultry:'पोल्ट्री',
-                howTitle:'अर्डर गर्ने तरिका', howDesc:'सजिलो अर्डर प्रक्रिया — अनलाइन भुक्तानी आवश्यक छैन।',
-                step1Title:'आफ्नो अर्डर सूची बनाउनुहोस्', step1Desc:'इन्क्युबेटर, स्पेयर पार्ट्स वा विद्युतीय सामग्री छानेर आवश्यक संख्या राख्नुहोस्।',
-                step2Title:'WhatsApp मा पठाउनुहोस्', step2Desc:'WhatsApp बाट अर्डर पठाउनुहोस्। तपाईंको सूची तयार सन्देशका रूपमा हाम्रो टोलीमा पुग्नेछ।',
-                step3Title:'मूल्य बुझेर निश्चित गर्नुहोस्', step3Desc:'भुक्तानीअघि मूल्य, उपलब्धता, मिल्दोपन र डेलिभरी निश्चित गरिन्छ।',
-                contactTitle:'इन्क्युबेटर वा स्पेयर पार्ट्स चाहिन्छ?', contactDesc:'उपलब्धता, मूल्य, विवरण वा आफूअनुसारको इन्क्युबेटरका लागि DRK Tech Trading Pvt. Ltd. मा सम्पर्क गर्नुहोस्। हामी नेपालभर सेवा दिन्छौँ।',
-                chatUs:'WhatsApp मा सम्पर्क गर्नुहोस्', phoneLabel:'फोन / WhatsApp', locationLabel:'ठेगाना', websiteLabel:'वेबसाइट',
-                footerProducts:'अण्डा इन्क्युबेटर • स्पेयर पार्ट्स • विद्युतीय • अटोमेसन', orderList:'मेरो अर्डर सूची', totalItems:'जम्मा सामग्री',
-                cartNote:'मोडेल, संख्या र डेलिभरी स्थानअनुसार मूल्य WhatsApp मा निश्चित गरिनेछ।',
-                sendOrder:'WhatsApp बाट अर्डर पठाउनुहोस्', clearList:'सूची खाली गर्नुहोस्', categoryLabel:'श्रेणी:', priceLabel:'मूल्य:', orderWhatsApp:'WhatsApp बाट अर्डर गर्नुहोस्',
-                shareProduct:'उत्पादन शेयर गर्नुहोस्', priceRequest:'मूल्यका लागि सम्पर्क गर्नुहोस्', addQuote:'मूल्य बुझ्न सूचीमा राख्नुहोस्', added:'थपियो', emptyCart:'तपाईंको अर्डर सूची खाली छ।', emptyCartHint:'मूल्य बुझ्न उत्पादनहरू थप्नुहोस्।',
-                each:'प्रति थान', close:'बन्द गर्नुहोस्', viewDetails:'विवरण हेर्नुहोस्', previousPhoto:'अघिल्लो फोटो', nextPhoto:'अर्को फोटो'
-            }
-        };
+      actionCell.appendChild(save);
 
-        const productNepali = {
-            'auto-incubator':['स्वचालित अण्डा इन्क्युबेटर','डिजिटल तापक्रम तथा आर्द्रता नियन्त्रण र स्वचालित अण्डा घुमाउने सुविधासहितको इन्क्युबेटर। विभिन्न क्षमतामा उपलब्ध।'],
-            'mini-incubator':['मिनी / साना फार्मका लागि इन्क्युबेटर','सानो फार्म तथा सुरुवात गर्नेहरूका लागि उपयुक्त। चलाउन सजिलो र भरपर्दो तापक्रम नियन्त्रण।'],
-            'custom-incubator':['आवश्यकताअनुसारको ह्याचरी इन्क्युबेटर','तपाईंको ह्याचरीको आवश्यकता अनुसार तयार गरिने ठूलो क्षमताको सेटर तथा ह्याचर।'],
-            'controller':['डिजिटल तापक्रम तथा आर्द्रता नियन्त्रक','सेन्सर, अलार्म र सटीक सेटिङ सुविधासहित इन्क्युबेटरका लागि प्रतिस्थापन नियन्त्रक।'],
-            'controller-w1209':['W1209 तापक्रम नियन्त्रक','इन्क्युबेटरमा प्रयोग हुने डिजिटल तापक्रम नियन्त्रक।'],
-            'controller-xh3001':['XH-W3001 तापक्रम नियन्त्रक','इन्क्युबेटरको तापक्रम नियन्त्रणका लागि डिजिटल नियन्त्रक।'],
-            'controller-xh3002':['XH-W3002 तापक्रम नियन्त्रक','इन्क्युबेटरको तापक्रम नियन्त्रणका लागि डिजिटल नियन्त्रक।'],
-            '6-watt-turning-motor':['६ वाट अण्डा घुमाउने मोटर','इन्क्युबेटरमा अण्डाको ट्रे स्वचालित रूपमा घुमाउने कम गतिको मोटर।'],
-            '14-watt-turning-motor':['१४ वाट अण्डा घुमाउने मोटर','इन्क्युबेटरमा अण्डाको ट्रे स्वचालित रूपमा घुमाउने कम गतिको मोटर।'],
-            'digital-timer':['डिजिटल टाइमर कन्ट्रोल','इन्क्युबेटर सञ्चालनका लागि डिजिटल टाइमर।'],
-            'mechanical-timer':['मेकानिकल टाइमर कन्ट्रोल','इन्क्युबेटर सञ्चालनका लागि मेकानिकल टाइमर।'],
-            'fan-8-inch':['८ इन्च सर्कुलेसन फ्यान','इन्क्युबेटरभित्र समान तापक्रम कायम गर्न हावा प्रवाह गर्ने फ्यान।'],
-            'fan-black-axial':['कालो एक्सियल सर्कुलेसन फ्यान','इन्क्युबेटरभित्र हावा प्रवाह तथा भेन्टिलेसनका लागि फ्यान।'],
-            'spare-heater-coil':['रिङ हिटर','इन्क्युबेटर तथा तताउने उपकरणका लागि गोलाकार हिटिङ एलिमेन्ट। साइज, भोल्टेज र वाट पुष्टि गर्नुहोस्।'],
-            'spare-u-heater':['यू-टाइप हिटर','यू आकारको ट्युबुलर हिटिङ एलिमेन्ट। अर्डरअघि नाप, भोल्टेज र वाट पुष्टि गर्नुहोस्।'],
-            'spare-stc1000':['सामान्य STC-1000 तापक्रम नियन्त्रक','हिटिङ तथा कुलिङका लागि डिजिटल तापक्रम नियन्त्रक। खरिदअघि मोडेल र भोल्टेज जाँच गर्नुहोस्।'],
-            'spare-stc-controller':['ओरिजिनल STC-1000 तापक्रम नियन्त्रक','डिस्प्ले र सेन्सर तारसहितको डिजिटल तापक्रम नियन्त्रक। अनुकूलता पुष्टि गर्नुहोस्।'],
-            'spare-humidity-Heater':['M452 तापक्रम तथा आर्द्रता नियन्त्रक','सेन्सर र रिले आउटपुटसहितको तापक्रम तथा आर्द्रता नियन्त्रण मोड्युल।'],
-            'spare-heating-rods':['ह्युमिडिटी रड','मिल्ने उपकरणका लागि ट्युबुलर हिटिङ रड। लम्बाइ, वाट र भोल्टेज पुष्टि गर्नुहोस्।'],
-            'xm-18 spare-incubator-controller':['XM-18 इन्क्युबेटर नियन्त्रक','इन्क्युबेटर सेटिङ नियन्त्रण गर्ने स्वचालित नियन्त्रक। मोडेल मिल्छ कि मिल्दैन पुष्टि गर्नुहोस्।'],
-            'spare-xm18-controller':['XM-18SW इन्क्युबेटर नियन्त्रक','डिजिटल इन्क्युबेटर नियन्त्रक। सही मोडेल, वायरिङ र सुविधाहरू पुष्टि गर्नुहोस्।'],
-            'spare-incubator-control-unit':['XM-18D इन्क्युबेटर नियन्त्रक','सेन्सर सामग्रीसहितको इन्क्युबेटर कन्ट्रोल युनिट। विवरण र अनुकूलताका लागि सम्पर्क गर्नुहोस्।'],
-            'egg-tray':['अण्डा राख्ने ट्रे','कुखुरा, हाँस तथा अन्य चराका अण्डाका लागि सेटर र ह्याचर ट्रे।'],
-            'electrical':['विद्युतीय तथा इलेक्ट्रोनिक सामग्री','उपकरण मर्मतका लागि रिले, कन्ट्याक्टर, स्विच, पावर सप्लाई, तार तथा अन्य सामग्री।'],
-            'automation':['पोल्ट्री अटोमेसन तथा कन्ट्रोल प्यानल','पोल्ट्री फार्म र ह्याचरीमा तापक्रम, आर्द्रता, भेन्टिलेसन तथा बत्ती नियन्त्रण गर्ने समाधान।'],
-            'nipple-cup-drinker':['निप्पल कप ड्रिंकर','पोल्ट्री फार्मका लागि स्वचालित पानी पिउने प्रणाली। चरालाई सफा पानी उपलब्ध गराउन सहयोग गर्छ।']
-        };
+      tr.append(name, qtyCell, statusCell, actionCell);
 
-        const categoryNepali = {'Incubators':'इन्क्युबेटर','Spare Parts':'स्पेयर पार्ट्स','Electrical':'विद्युतीय','Automation':'अटोमेसन','Poultry':'पोल्ट्री'};
-        const badgeNepali = {'Best Seller':'धेरै बिक्री हुने','Starter':'सुरुवाती मोडेल','Made to Order':'अर्डरअनुसार','Spare Part':'स्पेयर पार्ट','Accessory':'सहायक सामग्री','Electrical':'विद्युतीय','Automation':'अटोमेसन','Poultry':'पोल्ट्री'};
+      rows.appendChild(tr);
+    });
+}
 
-        function productName(p) { return p.name; }
-        function productDesc(p) { return productNepali[p.id] ? productNepali[p.id][1] : p.desc; }
-        function categoryName(c) { return currentLanguage === 'ne' ? (categoryNepali[c] || c) : c; }
-        function badgeName(b) { return currentLanguage === 'ne' ? (badgeNepali[b] || b) : b; }
+document.getElementById('search')
+  .addEventListener('input', render);
 
-        function applyLanguage() {
-            const words = uiText[currentLanguage];
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.dataset.i18n;
-                if (words[key]) el.textContent = words[key];
-            });
-            document.getElementById('languageToggle').textContent = currentLanguage === 'ne' ? 'English' : 'नेपाली';
-            document.documentElement.lang = currentLanguage === 'ne' ? 'ne' : 'en';
-            document.getElementById('productSearch').placeholder = currentLanguage === 'ne' ? 'उत्पादनको नाम वा Model Number खोज्नुहोस्...' : 'Search product name or model number...';
-            const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
-            renderProducts(activeFilter);
-            renderCart();
-        }
+document.getElementById('exportBtn')
+  .addEventListener('click', () => {
 
-        const formatNPR = n => 'Rs. ' + n.toLocaleString('en-IN');
+    const blob = new Blob(
+      [JSON.stringify(quantities, null, 2)],
+      { type: 'application/json' }
+    );
 
-        function whatsappOrderUrl(product) {
-            const shownPrice = Number.isFinite(product.price) && product.price > 0
-                ? formatNPR(product.price)
-                : 'Price on request';
-            const message = currentLanguage === 'ne' ? `नमस्ते DRK Tech Trading, मलाई यो सामान अर्डर गर्नुछ: ${productName(product)}। देखाइएको मूल्य: ${shownPrice}। कृपया उपलब्धता र डेलिभरी विवरण पुष्टि गर्नुहोस्।` : `Namaste DRK Tech Trading, I want to order: ${product.name}. Price shown: ${shownPrice}. Please confirm availability and delivery details.`;
-            return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-        }
+    const url = URL.createObjectURL(blob);
 
-        let cart = loadCart();
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'drk-stock-quantities.json';
+    a.click();
 
-        function loadCart() {
-            try {
-                const saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-                // Drop anything no longer in the catalog
-                return Object.fromEntries(Object.entries(saved).filter(([id, qty]) => PRODUCTS.some(p => p.id === id) && qty > 0));
-            } catch {
-                return {};
-            }
-        }
+    URL.revokeObjectURL(url);
+  });
 
-        function saveCart() {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
-        }
+document.getElementById('resetBtn')
+  .addEventListener('click', () => {
 
-        let productSearchTerm = '';
+    if (!confirm(
+      'यस ब्राउजरमा सेभ भएका सबै quantity हटाउने?'
+    )) return;
 
-        function renderProducts(filter = 'all') {
-            const grid = document.getElementById('productsGrid');
-            const term = productSearchTerm.trim().toLowerCase();
-            grid.innerHTML = PRODUCTS
-                .filter(p => (filter === 'all' || p.category === filter) && (!term || [p.name, p.category, p.desc, p.id].join(' ').toLowerCase().includes(term)))
-                .map(p => `
-                    <article class="product-card" data-product-id="${p.id}">
-                        <div class="product-image" role="button" tabindex="0" aria-label="${uiText[currentLanguage].viewDetails} ${productName(p)}">
-                            <span class="product-badge">${badgeName(p.badge)}</span>
-                            ${(p.images && p.images.length) || p.image
-                                ? `<img class="product-photo" src="${(p.images && p.images.length) ? p.images[0] : p.image}" alt="${productName(p)}" loading="lazy">`
-                                : `<i class="fas ${p.icon}"></i>`}
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">${productName(p)}</h3>
-                            <p class="product-desc">${productDesc(p)}</p>
-                            <span class="stock-status ${stockInfo(p).className}">${stockInfo(p).label}</span>
-                            <div class="product-meta">
-                                <div class="product-price">${p.price ? formatNPR(p.price) : uiText[currentLanguage].priceRequest}<small>${categoryName(p.category)}</small></div>
-                                ${Number.isFinite(p.price) && p.price > 0
-                                    ? `<a class="add-to-cart-btn btn-whatsapp" href="${whatsappOrderUrl(p)}" target="_blank" rel="noopener noreferrer">
-                                        <i class="fab fa-whatsapp"></i> ${uiText[currentLanguage].orderWhatsApp}
-                                      </a>`
-                                    : `<button class="add-to-cart-btn" data-id="${p.id}"><i class="fas fa-clipboard-list"></i> ${uiText[currentLanguage].addQuote}</button>`}
-                            </div>
-                        </div>
-                    </article>`).join('');
+    quantities = {};
+    saveQuantities();
+    render();
+  });
 
-            grid.querySelectorAll('img.product-photo').forEach(img => {
-                img.addEventListener('error', () => {
-                    const parent = img.parentElement;
-                    const card = img.closest('.product-card');
-                    const productData = PRODUCTS.find(p => p.id === card?.dataset.productId);
-                    img.remove();
-                    if (parent && productData) {
-                        const icon = document.createElement('i');
-                        icon.className = `fas ${productData.icon}`;
-                        parent.appendChild(icon);
-                    }
-                }, { once: true });
-            });
-        }
+render();
 
-        function renderCart() {
-            const container = document.getElementById('cartItems');
-            const entries = Object.entries(cart);
-            const totalQty = entries.reduce((sum, [, qty]) => sum + qty, 0);
-
-            const countEl = document.getElementById('cartCount');
-            countEl.textContent = totalQty;
-            document.getElementById('cartTotal').textContent = totalQty;
-            document.getElementById('checkoutBtn').disabled = totalQty === 0;
-            document.getElementById('clearCartBtn').style.display = totalQty ? 'block' : 'none';
-
-            if (!entries.length) {
-                container.innerHTML = `<div class="empty-cart-msg"><i class="fas fa-basket-shopping"></i>${uiText[currentLanguage].emptyCart}<br>${uiText[currentLanguage].emptyCartHint}</div>`;
-                return;
-            }
-
-            container.innerHTML = entries.map(([id, qty]) => {
-                const p = PRODUCTS.find(x => x.id === id);
-                return `
-                    <div class="cart-item">
-                        <div class="cart-item-details">
-                            <h4>${productName(p)}</h4>
-                            <p>${p.price ? formatNPR(p.price) + ' ' + uiText[currentLanguage].each : uiText[currentLanguage].priceRequest}</p>
-                        </div>
-                        <div class="cart-item-actions">
-                            <div class="qty-control">
-                                <button data-action="dec" data-id="${id}" aria-label="Decrease"><i class="fas fa-minus"></i></button>
-                                <span>${qty}</span>
-                                <button data-action="inc" data-id="${id}" aria-label="Increase"><i class="fas fa-plus"></i></button>
-                            </div>
-                            <button class="remove-item-btn" data-action="remove" data-id="${id}" aria-label="Remove"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </div>`;
-            }).join('');
-        }
-
-        function updateQty(id, delta) {
-            cart[id] = (cart[id] || 0) + delta;
-            if (cart[id] <= 0) delete cart[id];
-            saveCart();
-            renderCart();
-        }
-
-        function openCart() {
-            document.getElementById('cartSidebar').classList.add('open');
-            document.getElementById('cartOverlay').classList.add('show');
-            document.body.classList.add('cart-open');
-        }
-
-        function closeCart() {
-            document.getElementById('cartSidebar').classList.remove('open');
-            document.getElementById('cartOverlay').classList.remove('show');
-            document.body.classList.remove('cart-open');
-        }
-
-        function checkout() {
-            const lines = Object.entries(cart).map(([id, qty], i) => {
-                const p = PRODUCTS.find(x => x.id === id);
-                return `${i + 1}. ${productName(p)} x ${qty}`;
-            });
-            if (!lines.length) return;
-            const message = [
-                currentLanguage === 'ne' ? 'नमस्ते DRK Tech! मलाई तलका सामान अर्डर गर्न / मूल्य बुझ्नुछ:' : 'Namaste DRK Tech! I would like to order / get a quote for:',
-                '',
-                ...lines,
-                '',
-                currentLanguage === 'ne' ? 'कृपया मूल्य, उपलब्धता र डेलिभरी विवरण पठाउनुहोस्।' : 'Please share price, availability, and delivery details.'
-            ].join('\n');
-            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
-        }
-
-        function openProductModal(product) {
-            if (!product) return;
-            const imageBox = document.getElementById('productModalImage');
-            const thumbsBox = document.getElementById('productModalThumbnails');
-            const productImages = product.images || (product.image ? [product.image] : []);
-            imageBox.innerHTML = '';
-            thumbsBox.innerHTML = '';
-            let currentImage = 0;
-            const showLargePhoto = (src, alt) => {
-                const lightbox = document.createElement('div');
-                lightbox.className = 'photo-lightbox';
-                lightbox.setAttribute('role', 'dialog');
-                lightbox.setAttribute('aria-label', 'Enlarged product photo');
-                const largeImg = document.createElement('img');
-                largeImg.src = src; largeImg.alt = alt;
-                const closeBtn = document.createElement('button');
-                closeBtn.className = 'photo-lightbox-close'; closeBtn.type = 'button';
-                closeBtn.setAttribute('aria-label', 'Close enlarged photo'); closeBtn.textContent = '×';
-                const close = () => lightbox.remove();
-                closeBtn.addEventListener('click', close);
-                lightbox.addEventListener('click', e => { if (e.target === lightbox) close(); });
-                largeImg.addEventListener('click', e => e.stopPropagation());
-                lightbox.append(largeImg, closeBtn); document.body.appendChild(lightbox); closeBtn.focus();
-            };
-            const renderImage = (index) => {
-                currentImage = index;
-                imageBox.innerHTML = '';
-                if (!productImages.length) {
-                    const icon = document.createElement('i'); icon.className = `fas ${product.icon || 'fa-image'}`; imageBox.appendChild(icon); return;
-                }
-                const img = document.createElement('img');
-                img.src = productImages[currentImage]; img.alt = productName(product);
-                img.onerror = () => { img.remove(); const icon = document.createElement('i'); icon.className = `fas ${product.icon || 'fa-image'}`; imageBox.appendChild(icon); };
-                imageBox.appendChild(img);
-                const zoom = document.createElement('button'); zoom.type = 'button'; zoom.className = 'product-zoom-btn';
-                zoom.setAttribute('aria-label', 'फोटो ठूलो हेर्नुहोस्'); zoom.innerHTML = '<i class="fas fa-magnifying-glass-plus"></i>';
-                zoom.addEventListener('click', () => showLargePhoto(img.src, img.alt)); imageBox.appendChild(zoom);
-                [...thumbsBox.children].forEach((el, i) => el.classList.toggle('active', i === currentImage));
-            };
-            if (productImages.length) {
-                productImages.forEach((src, i) => {
-                    const thumb = document.createElement('button'); thumb.type = 'button';
-                    thumb.className = 'product-thumbnail' + (i === 0 ? ' active' : '');
-                    thumb.setAttribute('aria-label', `फोटो ${i + 1} हेर्नुहोस्`);
-                    const thumbImg = document.createElement('img'); thumbImg.src = src; thumbImg.alt = `${productName(product)} ${i + 1}`;
-                    thumb.appendChild(thumbImg); thumb.addEventListener('click', () => renderImage(i)); thumbsBox.appendChild(thumb);
-                });
-                renderImage(0);
-            } else renderImage(0);
-            document.getElementById('productModalTitle').textContent = productName(product);
-            document.getElementById('productModalCategory').textContent = categoryName(product.category);
-            document.getElementById('productModalDescription').textContent = productDesc(product);
-            document.getElementById('productModalPrice').textContent = Number.isFinite(product.price) && product.price > 0 ? formatNPR(product.price) : uiText[currentLanguage].priceRequest;
-            const stock = stockInfo(product);
-            const stockEl = document.getElementById('productModalStock');
-            stockEl.textContent = stock.label;
-            stockEl.className = `stock-status ${stock.className}`;
-            document.getElementById('productModalOrder').href = whatsappOrderUrl(product);
-            if (location.hash !== `#product=${encodeURIComponent(product.id)}`) history.replaceState(null, '', `${location.pathname}${location.search}#product=${encodeURIComponent(product.id)}`);
-            document.getElementById('productModal').classList.add('open');
-            document.body.classList.add('cart-open');
-        }
-
-        function closeProductModal() {
-            document.getElementById('productModal').classList.remove('open');
-            document.body.classList.remove('cart-open');
-            if (location.hash.startsWith('#product=')) history.replaceState(null, '', `${location.pathname}${location.search}`);
-        }
-
-        async function shareCurrentProduct() {
-            const id = decodeURIComponent(location.hash.replace(/^#product=/, ''));
-            const product = PRODUCTS.find(p => p.id === id) || PRODUCTS.find(p => p.name === document.getElementById('productModalTitle').textContent);
-            if (!product) return;
-            const shareUrl = `${location.origin}${location.pathname}#product=${encodeURIComponent(product.id)}`;
-            const title = productName(product);
-            const description = productDesc(product);
-            try {
-                if (navigator.share) {
-                    await navigator.share({ title, text: `${title}\n${description}`, url: shareUrl });
-                } else if (navigator.clipboard && window.isSecureContext) {
-                    await navigator.clipboard.writeText(shareUrl);
-                    alert(currentLanguage === 'ne' ? 'उत्पादनको लिंक Copy भयो। अब जहाँ चाहनुहुन्छ Share गर्नुहोस्।' : 'Product link copied. You can now share it anywhere.');
-                } else {
-                    window.prompt(currentLanguage === 'ne' ? 'यो लिंक Copy गरेर Share गर्नुहोस्:' : 'Copy this link to share:', shareUrl);
-                }
-            } catch (err) {
-                if (err && err.name !== 'AbortError') alert(currentLanguage === 'ne' ? 'Share गर्न सकिएन। कृपया फेरि प्रयास गर्नुहोस्।' : 'Could not share. Please try again.');
-            }
-        }
-
-        document.getElementById('productsGrid').addEventListener('click', e => {
-            const imageArea = e.target.closest('.product-image');
-            if (!imageArea) return;
-            const card = imageArea.closest('.product-card');
-            const product = PRODUCTS.find(p => p.id === card?.dataset.productId);
-            if (product) openProductModal(product);
-        });
-
-        document.getElementById('productsGrid').addEventListener('keydown', e => {
-            if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('product-image')) {
-                e.preventDefault();
-                const card = e.target.closest('.product-card');
-                const product = PRODUCTS.find(p => p.id === card?.dataset.productId);
-                if (product) openProductModal(product);
-            }
-        });
-
-        document.getElementById('closeProductModal').addEventListener('click', closeProductModal);
-        document.getElementById('shareProductBtn').addEventListener('click', shareCurrentProduct);
-        document.getElementById('productModal').addEventListener('click', e => {
-            if (e.target.id === 'productModal') closeProductModal();
-        });
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeProductModal(); });
-
-        document.getElementById('productsGrid').addEventListener('click', e => {
-            const btn = e.target.closest('button.add-to-cart-btn[data-id]');
-            if (!btn) return;
-            updateQty(btn.dataset.id, 1);
-            btn.classList.add('added');
-            btn.innerHTML = `<i class="fas fa-check"></i> ${uiText[currentLanguage].added}`;
-            setTimeout(() => {
-                btn.classList.remove('added');
-                btn.innerHTML = `<i class="fas fa-clipboard-list"></i> ${uiText[currentLanguage].addQuote}`;
-            }, 1200);
-            const countEl = document.getElementById('cartCount');
-            countEl.classList.remove('bump');
-            void countEl.offsetWidth;
-            countEl.classList.add('bump');
-        });
-
-        document.getElementById('cartItems').addEventListener('click', e => {
-            const btn = e.target.closest('button[data-action]');
-            if (!btn) return;
-            const { action, id } = btn.dataset;
-            if (action === 'inc') updateQty(id, 1);
-            if (action === 'dec') updateQty(id, -1);
-            if (action === 'remove') updateQty(id, -cart[id]);
-        });
-
-        document.getElementById('productSearch').addEventListener('input', e => {
-            productSearchTerm = e.target.value;
-            const active = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
-            renderProducts(active);
-        });
-
-        document.getElementById('filterBar').addEventListener('click', e => {
-            const btn = e.target.closest('.filter-btn');
-            if (!btn) return;
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b === btn));
-            renderProducts(btn.dataset.filter);
-        });
-
-        document.getElementById('cartIconBtn').addEventListener('click', openCart);
-        document.getElementById('closeCartBtn').addEventListener('click', closeCart);
-        document.getElementById('cartOverlay').addEventListener('click', closeCart);
-        document.getElementById('checkoutBtn').addEventListener('click', checkout);
-        document.getElementById('clearCartBtn').addEventListener('click', () => {
-            cart = {};
-            saveCart();
-            renderCart();
-        });
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCart(); });
-
-        document.getElementById('languageToggle').addEventListener('click', () => {
-            currentLanguage = currentLanguage === 'ne' ? 'en' : 'ne';
-            applyLanguage();
-        });
-
-        applyLanguage();
-        // Open the product automatically when someone visits a shared product link.
-        if (location.hash.startsWith('#product=')) {
-            const sharedProductId = decodeURIComponent(location.hash.slice(9));
-            const sharedProduct = PRODUCTS.find(p => p.id === sharedProductId);
-            if (sharedProduct) openProductModal(sharedProduct);
-        }
-    </script>
+</script>
 </body>
 </html>
