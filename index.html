@@ -397,6 +397,8 @@
         .product-modal-section { border-top:1px solid #e2e8f0; padding-top:1.2rem; margin-top:.4rem; }
         .product-modal-section h4 { font-size:1.2rem; color:#10213d; margin:0 0 .7rem; }
         .product-modal-section p { color:#334155; line-height:1.8; font-size:1.05rem; margin:0; }
+        .product-share-btn { display:inline-flex; align-items:center; justify-content:center; gap:.55rem; width:100%; min-height:48px; margin-top:12px; border:1px solid #1763c6; border-radius:10px; background:#eff6ff; color:#174b8c; font-weight:700; cursor:pointer; font-size:1rem; }
+        .product-share-btn:hover { background:#dbeafe; }
         .product-modal-order { margin-top:auto; padding-top:1.5rem; }
         .product-modal-order .btn { width:100%; min-height:58px; justify-content:center; font-size:1.1rem; }
         @media (max-width:760px) { .product-modal { padding:.6rem; align-items:flex-start; overflow-y:auto; } .product-modal-card { grid-template-columns:1fr; gap:.8rem; width:100%; max-height:none; min-height:0; padding:1rem; border-radius:16px; margin:auto 0; } .product-modal-image { height: min(62vw,380px); min-height:230px; } .product-modal-details { padding:.5rem 0 0; } .product-modal-details h3 { margin-right:3rem; } .product-thumbnail { flex-basis:78px; width:78px; height:72px; } .product-modal-order { padding-top:1rem; } }
@@ -1062,6 +1064,7 @@
                     <a class="btn btn-whatsapp" id="productModalOrder" href="#" target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-whatsapp"></i> <span data-i18n="orderWhatsApp">WhatsApp बाट अर्डर गर्नुहोस्</span>
                     </a>
+                    <button class="product-share-btn" id="shareProductBtn" type="button"><i class="fas fa-share-alt"></i> <span data-i18n="shareProduct">उत्पादन शेयर गर्नुहोस्</span></button>
                 </div>
             </div>
         </div>
@@ -1229,7 +1232,7 @@
                 footerProducts:'Egg Incubators • Spare Parts • Electrical • Automation', orderList:'My Order List', totalItems:'Total items',
                 cartNote:'Prices are confirmed on WhatsApp based on model, quantity, and delivery location.',
                 sendOrder:'Send Order via WhatsApp', clearList:'Clear list', categoryLabel:'Category:', priceLabel:'Price:', orderWhatsApp:'Order via WhatsApp',
-                priceRequest:'Price on request', addQuote:'Add to Quote', added:'Added', emptyCart:'Your order list is empty.', emptyCartHint:'Add products to request a quote.',
+                shareProduct:'Share Product', priceRequest:'Price on request', addQuote:'Add to Quote', added:'Added', emptyCart:'Your order list is empty.', emptyCartHint:'Add products to request a quote.',
                 each:'each', close:'Close', viewDetails:'View details for', previousPhoto:'Previous photo', nextPhoto:'Next photo'
             },
             ne: {
@@ -1249,7 +1252,7 @@
                 footerProducts:'अण्डा इन्क्युबेटर • स्पेयर पार्ट्स • विद्युतीय • अटोमेसन', orderList:'मेरो अर्डर सूची', totalItems:'जम्मा सामग्री',
                 cartNote:'मोडेल, संख्या र डेलिभरी स्थानअनुसार मूल्य WhatsApp मा निश्चित गरिनेछ।',
                 sendOrder:'WhatsApp बाट अर्डर पठाउनुहोस्', clearList:'सूची खाली गर्नुहोस्', categoryLabel:'श्रेणी:', priceLabel:'मूल्य:', orderWhatsApp:'WhatsApp बाट अर्डर गर्नुहोस्',
-                priceRequest:'मूल्यका लागि सम्पर्क गर्नुहोस्', addQuote:'मूल्य बुझ्न सूचीमा राख्नुहोस्', added:'थपियो', emptyCart:'तपाईंको अर्डर सूची खाली छ।', emptyCartHint:'मूल्य बुझ्न उत्पादनहरू थप्नुहोस्।',
+                shareProduct:'उत्पादन शेयर गर्नुहोस्', priceRequest:'मूल्यका लागि सम्पर्क गर्नुहोस्', addQuote:'मूल्य बुझ्न सूचीमा राख्नुहोस्', added:'थपियो', emptyCart:'तपाईंको अर्डर सूची खाली छ।', emptyCartHint:'मूल्य बुझ्न उत्पादनहरू थप्नुहोस्।',
                 each:'प्रति थान', close:'बन्द गर्नुहोस्', viewDetails:'विवरण हेर्नुहोस्', previousPhoto:'अघिल्लो फोटो', nextPhoto:'अर्को फोटो'
             }
         };
@@ -1496,6 +1499,7 @@
             document.getElementById('productModalDescription').textContent = productDesc(product);
             document.getElementById('productModalPrice').textContent = Number.isFinite(product.price) && product.price > 0 ? formatNPR(product.price) : uiText[currentLanguage].priceRequest;
             document.getElementById('productModalOrder').href = whatsappOrderUrl(product);
+            if (location.hash !== `#product=${encodeURIComponent(product.id)}`) history.replaceState(null, '', `${location.pathname}${location.search}#product=${encodeURIComponent(product.id)}`);
             document.getElementById('productModal').classList.add('open');
             document.body.classList.add('cart-open');
         }
@@ -1503,6 +1507,28 @@
         function closeProductModal() {
             document.getElementById('productModal').classList.remove('open');
             document.body.classList.remove('cart-open');
+            if (location.hash.startsWith('#product=')) history.replaceState(null, '', `${location.pathname}${location.search}`);
+        }
+
+        async function shareCurrentProduct() {
+            const id = decodeURIComponent(location.hash.replace(/^#product=/, ''));
+            const product = PRODUCTS.find(p => p.id === id) || PRODUCTS.find(p => p.name === document.getElementById('productModalTitle').textContent);
+            if (!product) return;
+            const shareUrl = `${location.origin}${location.pathname}#product=${encodeURIComponent(product.id)}`;
+            const title = productName(product);
+            const description = productDesc(product);
+            try {
+                if (navigator.share) {
+                    await navigator.share({ title, text: `${title}\n${description}`, url: shareUrl });
+                } else if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(shareUrl);
+                    alert(currentLanguage === 'ne' ? 'उत्पादनको लिंक Copy भयो। अब जहाँ चाहनुहुन्छ Share गर्नुहोस्।' : 'Product link copied. You can now share it anywhere.');
+                } else {
+                    window.prompt(currentLanguage === 'ne' ? 'यो लिंक Copy गरेर Share गर्नुहोस्:' : 'Copy this link to share:', shareUrl);
+                }
+            } catch (err) {
+                if (err && err.name !== 'AbortError') alert(currentLanguage === 'ne' ? 'Share गर्न सकिएन। कृपया फेरि प्रयास गर्नुहोस्।' : 'Could not share. Please try again.');
+            }
         }
 
         document.getElementById('productsGrid').addEventListener('click', e => {
@@ -1523,6 +1549,7 @@
         });
 
         document.getElementById('closeProductModal').addEventListener('click', closeProductModal);
+        document.getElementById('shareProductBtn').addEventListener('click', shareCurrentProduct);
         document.getElementById('productModal').addEventListener('click', e => {
             if (e.target.id === 'productModal') closeProductModal();
         });
@@ -1577,6 +1604,12 @@
         });
 
         applyLanguage();
+        // Open the product automatically when someone visits a shared product link.
+        if (location.hash.startsWith('#product=')) {
+            const sharedProductId = decodeURIComponent(location.hash.slice(9));
+            const sharedProduct = PRODUCTS.find(p => p.id === sharedProductId);
+            if (sharedProduct) openProductModal(sharedProduct);
+        }
     </script>
 </body>
 </html>
