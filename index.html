@@ -318,6 +318,11 @@
             margin-bottom: 2.5rem;
         }
 
+        .product-search-wrap { max-width: 620px; margin: 0 auto 1.25rem; position: relative; }
+        .product-search-wrap input { width:100%; min-height:50px; border:1px solid #cbd5e1; border-radius:12px; padding:0 1rem 0 3rem; font:inherit; background:#fff; color:#10213d; outline:none; }
+        .product-search-wrap input:focus { border-color:var(--primary); box-shadow:0 0 0 3px rgba(23,99,198,.12); }
+        .product-search-wrap i { position:absolute; left:1rem; top:50%; transform:translateY(-50%); color:#64748b; }
+
         .filter-btn {
             background: var(--white);
             border: 1px solid #e2e8f0;
@@ -411,6 +416,11 @@
             background: #fff;
         }
 
+        .stock-status { display:inline-flex; align-items:center; gap:.35rem; width:fit-content; margin:.45rem 0; padding:.28rem .65rem; border-radius:20px; font-size:.78rem; font-weight:700; }
+        .stock-in { color:#166534; background:#dcfce7; }
+        .stock-low { color:#92400e; background:#fef3c7; }
+        .stock-out { color:#991b1b; background:#fee2e2; }
+        .stock-unknown { color:#475569; background:#e2e8f0; }
         .product-badge {
             position: absolute;
             top: 1rem;
@@ -945,6 +955,10 @@
         <h2 class="section-title" data-i18n="productsTitle">उत्पादन तथा समाधान</h2>
         <p class="section-subtitle" data-i18n="productsDesc">आवश्यक सामग्री अर्डर सूचीमा राखेर WhatsApp मार्फत पठाउनुहोस्। हामी मूल्य, उपलब्धता र विवरण जानकारी गराउनेछौँ।</p>
 
+        <div class="product-search-wrap">
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <input id="productSearch" type="search" placeholder="उत्पादनको नाम वा Model Number खोज्नुहोस्..." aria-label="Search products">
+        </div>
         <div class="filter-bar" id="filterBar">
             <button class="filter-btn active" data-filter="all" data-i18n="filterAll">सबै</button>
             <button class="filter-btn" data-filter="Incubators" data-i18n="filterIncubators">इन्क्युबेटर</button>
@@ -1056,6 +1070,7 @@
                 <h3 id="productModalTitle"></h3>
                 <span class="product-modal-category" id="productModalCategory"></span>
                 <div class="product-modal-price"><span data-i18n="priceLabel">मूल्य:</span> <span id="productModalPrice"></span></div>
+                <span id="productModalStock" class="stock-status stock-unknown"></span>
                 <div class="product-modal-section">
                     <h4>उत्पादनको विवरण</h4>
                     <p id="productModalDescription"></p>
@@ -1212,6 +1227,21 @@
 }
 ];
 
+        // Update quantities here when stock changes. Unknown products show 'Availability on request'.
+        // Example: 'controller-xh3001': 12, 'controller-xh3002': 0
+        const STOCK_QUANTITIES = {
+            // Example entries: 'controller-xh3001': 12, 'controller-xh3002': 0
+            // Enter your real quantities here.
+        };
+
+        function stockInfo(product) {
+            const qty = STOCK_QUANTITIES[product.id];
+            if (!Number.isFinite(qty)) return { label: currentLanguage === 'ne' ? 'उपलब्धता सोध्नुहोस्' : 'Check availability', className: 'stock-unknown', qty: null };
+            if (qty <= 0) return { label: currentLanguage === 'ne' ? 'स्टक सकिएको' : 'Out of Stock', className: 'stock-out', qty };
+            if (qty <= 5) return { label: currentLanguage === 'ne' ? `थोरै मात्र बाँकी (${qty})` : `Limited Stock (${qty})`, className: 'stock-low', qty };
+            return { label: currentLanguage === 'ne' ? `स्टकमा उपलब्ध (${qty})` : `In Stock (${qty})`, className: 'stock-in', qty };
+        }
+
 
         let currentLanguage = 'ne';
         const uiText = {
@@ -1302,6 +1332,7 @@
             });
             document.getElementById('languageToggle').textContent = currentLanguage === 'ne' ? 'English' : 'नेपाली';
             document.documentElement.lang = currentLanguage === 'ne' ? 'ne' : 'en';
+            document.getElementById('productSearch').placeholder = currentLanguage === 'ne' ? 'उत्पादनको नाम वा Model Number खोज्नुहोस्...' : 'Search product name or model number...';
             const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
             renderProducts(activeFilter);
             renderCart();
@@ -1333,10 +1364,13 @@
             localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
         }
 
+        let productSearchTerm = '';
+
         function renderProducts(filter = 'all') {
             const grid = document.getElementById('productsGrid');
+            const term = productSearchTerm.trim().toLowerCase();
             grid.innerHTML = PRODUCTS
-                .filter(p => filter === 'all' || p.category === filter)
+                .filter(p => (filter === 'all' || p.category === filter) && (!term || [p.name, p.category, p.desc, p.id].join(' ').toLowerCase().includes(term)))
                 .map(p => `
                     <article class="product-card" data-product-id="${p.id}">
                         <div class="product-image" role="button" tabindex="0" aria-label="${uiText[currentLanguage].viewDetails} ${productName(p)}">
@@ -1348,6 +1382,7 @@
                         <div class="product-info">
                             <h3 class="product-title">${productName(p)}</h3>
                             <p class="product-desc">${productDesc(p)}</p>
+                            <span class="stock-status ${stockInfo(p).className}">${stockInfo(p).label}</span>
                             <div class="product-meta">
                                 <div class="product-price">${p.price ? formatNPR(p.price) : uiText[currentLanguage].priceRequest}<small>${categoryName(p.category)}</small></div>
                                 ${Number.isFinite(p.price) && p.price > 0
@@ -1498,6 +1533,10 @@
             document.getElementById('productModalCategory').textContent = categoryName(product.category);
             document.getElementById('productModalDescription').textContent = productDesc(product);
             document.getElementById('productModalPrice').textContent = Number.isFinite(product.price) && product.price > 0 ? formatNPR(product.price) : uiText[currentLanguage].priceRequest;
+            const stock = stockInfo(product);
+            const stockEl = document.getElementById('productModalStock');
+            stockEl.textContent = stock.label;
+            stockEl.className = `stock-status ${stock.className}`;
             document.getElementById('productModalOrder').href = whatsappOrderUrl(product);
             if (location.hash !== `#product=${encodeURIComponent(product.id)}`) history.replaceState(null, '', `${location.pathname}${location.search}#product=${encodeURIComponent(product.id)}`);
             document.getElementById('productModal').classList.add('open');
@@ -1578,6 +1617,12 @@
             if (action === 'inc') updateQty(id, 1);
             if (action === 'dec') updateQty(id, -1);
             if (action === 'remove') updateQty(id, -cart[id]);
+        });
+
+        document.getElementById('productSearch').addEventListener('input', e => {
+            productSearchTerm = e.target.value;
+            const active = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+            renderProducts(active);
         });
 
         document.getElementById('filterBar').addEventListener('click', e => {
